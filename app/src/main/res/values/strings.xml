@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MU_Project_Capstone</string>
+
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+
+    <!-- Paste BOTH strings as required -->
+    <string name="back4app_app_id">2QsohZlBbnipEHUNQiQAY4pvwh3ApqzfylLrFdGk</string>
+    <string name="back4app_client_key">74nzJlRClSvU3EgguR9r7d5CRYDpHojsYtGIEklA</string>
 </resources>
