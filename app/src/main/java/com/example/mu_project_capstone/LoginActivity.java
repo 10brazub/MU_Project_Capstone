@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -46,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         tvSignup.setPaintFlags(tvSignup.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         tvSignup.setOnClickListener(v -> {
             tvSignup.setTextColor(Color.parseColor("#663366"));
-            Intent i = new Intent(this, SignupActivity.class);
+            Intent i = new Intent(this, ChoosePathActivity.class);
             startActivity(i);
         });
     }
