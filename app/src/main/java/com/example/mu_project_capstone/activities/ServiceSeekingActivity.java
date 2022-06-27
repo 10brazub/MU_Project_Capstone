@@ -1,4 +1,4 @@
-package com.example.mu_project_capstone;
+package com.example.mu_project_capstone.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.example.mu_project_capstone.R;
 import com.parse.ParseUser;
 
 public class ServiceSeekingActivity extends AppCompatActivity {
@@ -51,6 +52,7 @@ public class ServiceSeekingActivity extends AppCompatActivity {
         user.put("firstName", firstName);
         user.put("lastName", lastName);
         user.put("zipcode", zipcode);
+        user.put("serviceSeeker", true);
 
         user.signUpInBackground(e -> {
             if (e == null) {

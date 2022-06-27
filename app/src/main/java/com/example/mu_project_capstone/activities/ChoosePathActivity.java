@@ -1,9 +1,10 @@
-package com.example.mu_project_capstone;
+package com.example.mu_project_capstone.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import com.example.mu_project_capstone.R;
 
 public class ChoosePathActivity extends AppCompatActivity {
 
@@ -27,6 +28,5 @@ public class ChoosePathActivity extends AppCompatActivity {
             Intent i = new Intent(this, ServiceProvidingActivity.class);
             startActivity(i);
         });
-
     }
 }

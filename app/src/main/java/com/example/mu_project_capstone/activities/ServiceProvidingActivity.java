@@ -1,7 +1,9 @@
-package com.example.mu_project_capstone;
+package com.example.mu_project_capstone.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.mu_project_capstone.R;
 
 public class ServiceProvidingActivity extends AppCompatActivity {
 

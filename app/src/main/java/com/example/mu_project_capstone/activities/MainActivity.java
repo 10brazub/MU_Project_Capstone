@@ -1,16 +1,13 @@
-package com.example.mu_project_capstone;
+package com.example.mu_project_capstone.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
-import com.parse.ParseObject;
+import com.example.mu_project_capstone.R;
 import com.parse.ParseUser;
 
 public class MainActivity extends AppCompatActivity {
