@@ -20,13 +20,13 @@ public class ChoosePathActivity extends AppCompatActivity {
         btnServiceProvider = findViewById(R.id.btnServiceProvider);
 
         btnServiceSeeking.setOnClickListener(v -> {
-            Intent i = new Intent(this, ServiceSeekingActivity.class);
-            startActivity(i);
+            Intent serviceSeekerIntent = new Intent(this, ServiceSeekingActivity.class);
+            startActivity(serviceSeekerIntent);
         });
 
         btnServiceProvider.setOnClickListener(v -> {
-            Intent i = new Intent(this, ServiceProvidingActivity.class);
-            startActivity(i);
+            Intent serviceProviderIntent = new Intent(this, ServiceProvidingActivity.class);
+            startActivity(serviceProviderIntent);
         });
     }
 }

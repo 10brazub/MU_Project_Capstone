@@ -13,7 +13,7 @@ public class ServiceSeekingActivity extends AppCompatActivity {
 
     EditText etFirstNameSignup;
     EditText etLastNameSignup;
-    EditText etZipcode;
+    EditText etZipcodeSignup;
     EditText etEmailSignup;
     EditText etPasswordSignup;
     Button btnSignup;
@@ -25,7 +25,7 @@ public class ServiceSeekingActivity extends AppCompatActivity {
 
         etFirstNameSignup = findViewById(R.id.etFirstNameSignup);
         etLastNameSignup = findViewById(R.id.etLastNameSignup);
-        etZipcode = findViewById(R.id.etZipcode);
+        etZipcodeSignup = findViewById(R.id.etZipcode);
         etEmailSignup = findViewById(R.id.etEmailSignup);
         etPasswordSignup = findViewById(R.id.etPasswordSignup);
         btnSignup = findViewById(R.id.btnSignup);
@@ -33,7 +33,7 @@ public class ServiceSeekingActivity extends AppCompatActivity {
         btnSignup.setOnClickListener(v -> {
             String firstName = etFirstNameSignup.getText().toString();
             String lastName = etLastNameSignup.getText().toString();
-            String zipcode = etZipcode.getText().toString();
+            String zipcode = etZipcodeSignup.getText().toString();
             String email = etEmailSignup.getText().toString();
             String password = etPasswordSignup.getText().toString();
 
@@ -43,19 +43,19 @@ public class ServiceSeekingActivity extends AppCompatActivity {
 
     private void signupUser(String firstName, String lastName, String zipcode, String email, String password) {
         // Creates a new parse user object
-        ParseUser user = new ParseUser();
+        ParseUser newUser = new ParseUser();
 
         //Fills new user row with details
-        user.setUsername(email);
-        user.setPassword(password);
-        user.setEmail(email);
-        user.put("firstName", firstName);
-        user.put("lastName", lastName);
-        user.put("zipcode", zipcode);
-        user.put("serviceSeeker", true);
+        newUser.setUsername(email);
+        newUser.setPassword(password);
+        newUser.setEmail(email);
+        newUser.put("firstName", firstName);
+        newUser.put("lastName", lastName);
+        newUser.put("zipcode", zipcode);
+        newUser.put("serviceSeeker", true);
 
-        user.signUpInBackground(e -> {
-            if (e == null) {
+        newUser.signUpInBackground(exception -> {
+            if (exception == null) {
                 Toast.makeText(ServiceSeekingActivity.this, "Sign up Successful", Toast.LENGTH_SHORT).show();
                 goMainActivity();
             } else {
@@ -67,8 +67,8 @@ public class ServiceSeekingActivity extends AppCompatActivity {
     }
 
     private void goMainActivity() {
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
+        Intent mainActivityIntent = new Intent(this, MainActivity.class);
+        startActivity(mainActivityIntent);
         finish();
     }
 }

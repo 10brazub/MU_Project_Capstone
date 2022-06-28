@@ -17,8 +17,8 @@ import com.parse.ParseUser;
 public class LoginActivity extends AppCompatActivity {
 
     public static final String TAG = "LoginActivity";
-    private EditText etEmail;
-    private EditText etPassword;
+    private EditText etLoginEmail;
+    private EditText etLoginPassword;
     private Button btnLogin;
     private TextView tvSignup;
 
@@ -32,31 +32,31 @@ public class LoginActivity extends AppCompatActivity {
             goMainActivity();
         }
 
-        etEmail = findViewById(R.id.etEmail);
-        etPassword = findViewById(R.id.etPassword);
+        etLoginEmail = findViewById(R.id.etEmail);
+        etLoginPassword = findViewById(R.id.etPassword);
         tvSignup = findViewById(R.id.tvSignup);
         btnLogin = findViewById(R.id.btnLogin);
 
         btnLogin.setOnClickListener(v -> {
             Log.i(TAG, "onClick login button");
-            String email = etEmail.getText().toString();
-            String password = etPassword.getText().toString();
+            String email = etLoginEmail.getText().toString();
+            String password = etLoginPassword.getText().toString();
             loginUser(email, password);
         });
 
         tvSignup.setPaintFlags(tvSignup.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         tvSignup.setOnClickListener(v -> {
             tvSignup.setTextColor(Color.parseColor("#663366"));
-            Intent i = new Intent(this, ChoosePathActivity.class);
-            startActivity(i);
+            Intent choosePathIntent = new Intent(this, ChoosePathActivity.class);
+            startActivity(choosePathIntent);
         });
     }
 
     private void loginUser(String email, String password) {
         Log.i(TAG, "Trying to login user " + email);
-        ParseUser.logInInBackground(email, password, (user, e) -> {
-            if (e != null) {
-                Log.e(TAG, "issue with login", e);
+        ParseUser.logInInBackground(email, password, (user, exception) -> {
+            if (exception != null) {
+                Log.e(TAG, "issue with login", exception);
                 Toast.makeText(LoginActivity.this, "Wrong Username/Password", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -66,8 +66,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void goMainActivity() {
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
+        Intent mainActivityIntent = new Intent(this, MainActivity.class);
+        startActivity(mainActivityIntent);
         finish();
     }
 }

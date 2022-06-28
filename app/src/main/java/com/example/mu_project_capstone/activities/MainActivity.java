@@ -25,21 +25,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem logoutItem) {
 
-        if (item.getItemId() == R.id.miLogout) {
+        if (logoutItem.getItemId() == R.id.miLogout) {
             ParseUser.logOut();
             ParseUser currentUser = ParseUser.getCurrentUser();
             Toast.makeText(MainActivity.this, "Logged out!", Toast.LENGTH_SHORT).show();
             goLoginActivity();
             return true;
         }
-        return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(logoutItem);
     }
 
     private void goLoginActivity() {
-        Intent i = new Intent(this, LoginActivity.class);
-        startActivity(i);
+        Intent loginIntent = new Intent(this, LoginActivity.class);
+        startActivity(loginIntent);
         finish();
     }
 }
