@@ -23,16 +23,20 @@ App will connect users with service providers like babysitting, lawn care, plumb
 **Required Must-have Stories**
 
 * Users can login/logout
+
 * User will choose from two different flows, either looking for a service or providing a service
 * Users will have a search feature to look for a service with filters for location, price, etc.
-* Implement Google maps SDK into app to display available service providers with markers
 * Users can see a list of matched service providers
+* Implement Google maps SDK into app to display available service providers with markers
 * Users can review the service provider
+* User can swipe left to delete a matched contractor
+* TODO: Find an animation for app
+* TODO: Find external library for visual polish
 
 
 **Optional Nice-to-have Stories**
 
-
+* Contractor listing displays serivce badges
 * Users can chat with each other to better communicate about the task
 
 ### 2. Screen Archetypes
