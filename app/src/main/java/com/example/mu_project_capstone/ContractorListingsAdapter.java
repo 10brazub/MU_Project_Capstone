@@ -24,17 +24,21 @@ public class ContractorListingsAdapter extends RecyclerView.Adapter<ContractorLi
 
         private TextView tvContractorFirstName;
         private TextView tvContractorLastName;
+        private TextView tvContractorDescription;
 
         public ViewHolder (View itemView) {
             super(itemView);
 
             tvContractorFirstName = itemView.findViewById(R.id.tvContractorFirstName);
             tvContractorLastName = itemView.findViewById(R.id.tvContractorLastName);
+            tvContractorDescription = itemView.findViewById(R.id.tvContractorDescription);
+
         }
 
         public void bind(ContractorListing contractorListing) {
             tvContractorFirstName.setText(contractorListing.getKeyContractorFirstName());
             tvContractorLastName.setText(contractorListing.getKeyContractorLastName());
+            tvContractorDescription.setText(contractorListing.getKeyContractorDescription());
         }
     }
 

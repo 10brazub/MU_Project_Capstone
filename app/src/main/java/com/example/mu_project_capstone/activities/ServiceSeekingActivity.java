@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.example.mu_project_capstone.R;
+import com.parse.Parse;
+import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 public class ServiceSeekingActivity extends AppCompatActivity {
