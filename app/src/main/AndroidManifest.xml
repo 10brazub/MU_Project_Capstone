@@ -18,6 +18,15 @@
         android:theme="@style/Theme.MU_Project_Capstone"
         tools:targetApi="31">
         <activity
+            android:name=".activities.SearchResultsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.SearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ItemPostDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.ServiceProvidingActivity"
             android:exported="false" />
         <activity

@@ -2,19 +2,24 @@ package com.example.mu_project_capstone.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.mu_project_capstone.ContractorListingsAdapter;
 import com.example.mu_project_capstone.ContractorListing;
 import com.example.mu_project_capstone.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -27,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     private List<ContractorListing> contractorListings;
     private ContractorListingsAdapter adapter;
     private RecyclerView rvContractorListings;
+    private BottomNavigationView bottomNavigation;
+    private CardView cvSearchBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +45,34 @@ public class MainActivity extends AppCompatActivity {
         adapter = new ContractorListingsAdapter(contractorListings, this);
         rvContractorListings.setAdapter(adapter);
         rvContractorListings.setLayoutManager(new LinearLayoutManager(this));
-
         queryContractorListings();
+
+        cvSearchBar = findViewById(R.id.cvSearchBar);
+        cvSearchBar.setOnClickListener(v -> {
+
+            Intent searchIntent = new Intent(this, SearchActivity.class);
+            startActivity(searchIntent);
+            overridePendingTransition(R.anim.slide_in_up, R.anim.slide_in_up);
+
+        });
+
+        bottomNavigation = findViewById(R.id.bottomNavigation);
+        bottomNavigation.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()){
+                case R.id.action_home:
+                    Toast.makeText(MainActivity.this, "HOME", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.action_chat:
+                    Toast.makeText(MainActivity.this, "CHAT", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.action_profile:
+                    Toast.makeText(MainActivity.this, "PROFILE", Toast.LENGTH_SHORT).show();
+                    break;
+                default:
+                    break;
+            }
+            return true;
+        });
     }
 
     private void queryContractorListings() {
