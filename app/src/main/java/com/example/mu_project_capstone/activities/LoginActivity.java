@@ -1,6 +1,8 @@
 package com.example.mu_project_capstone.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -46,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
         tvSignup.setPaintFlags(tvSignup.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         tvSignup.setOnClickListener(v -> {
-            tvSignup.setTextColor(Color.parseColor("#663366"));
+            tvSignup.setTextColor(ContextCompat.getColor(getBaseContext(), R.color.hyperlink_purple));
             Intent choosePathIntent = new Intent(this, ChoosePathActivity.class);
             startActivity(choosePathIntent);
         });

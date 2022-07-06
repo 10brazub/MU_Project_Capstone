@@ -8,9 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.mu_project_capstone.activities.ItemPostDetailsActivity;
-
 import java.util.List;
 
 public class ContractorListingsAdapter extends RecyclerView.Adapter<ContractorListingsAdapter.ViewHolder> {
@@ -20,7 +18,7 @@ public class ContractorListingsAdapter extends RecyclerView.Adapter<ContractorLi
 
 
     public ContractorListingsAdapter(List<ContractorListing> contractorListings, Context context) {
-        this.contractorListings= contractorListings;
+        this.contractorListings = contractorListings;
         this.context = context;
     }
 
@@ -30,7 +28,7 @@ public class ContractorListingsAdapter extends RecyclerView.Adapter<ContractorLi
         private TextView tvContractorLastName;
         private TextView tvContractorDescription;
 
-        public ViewHolder (View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
 
             tvContractorFirstName = itemView.findViewById(R.id.tvContractorFirstName);

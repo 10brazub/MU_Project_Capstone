@@ -11,7 +11,6 @@ import com.example.mu_project_capstone.R;
 
 public class SearchActivity extends AppCompatActivity {
 
-    public static final String TAG = "SearchActivity";
     SearchView svUserQuery;
 
     @Override
@@ -22,11 +21,9 @@ public class SearchActivity extends AppCompatActivity {
         svUserQuery = findViewById(R.id.svUserQuery);
         svUserQuery.requestFocus();
 
-
         svUserQuery.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-
 
                 return true;
             }

@@ -5,30 +5,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
-
 import com.example.mu_project_capstone.ContractorListingsAdapter;
 import com.example.mu_project_capstone.ContractorListing;
 import com.example.mu_project_capstone.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String TAG = "MainActivity";
     private List<ContractorListing> contractorListings;
     private ContractorListingsAdapter adapter;
     private RecyclerView rvContractorListings;
@@ -79,12 +72,7 @@ public class MainActivity extends AppCompatActivity {
         ParseQuery<ContractorListing> query = ParseQuery.getQuery(ContractorListing.class);
         query.findInBackground((objects, e) -> {
             if (e != null) {
-                Log.e(TAG, "query went wrong", e);
                 return;
-            }
-
-            for (ContractorListing contractorListingItem: objects) {
-                Log.i(TAG, "First Name: " + contractorListingItem.getKeyContractorFirstName());
             }
             contractorListings.addAll(objects);
             adapter.notifyDataSetChanged();
