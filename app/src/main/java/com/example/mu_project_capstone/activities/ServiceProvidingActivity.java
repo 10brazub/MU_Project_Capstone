@@ -1,21 +1,15 @@
 package com.example.mu_project_capstone.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.mu_project_capstone.R;
-import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
-import com.parse.SignUpCallback;
+import static com.example.mu_project_capstone.ParseObjectKeys.*;
 
 public class ServiceProvidingActivity extends AppCompatActivity {
 
@@ -53,22 +47,20 @@ public class ServiceProvidingActivity extends AppCompatActivity {
     }
 
     private void signupUser(String firstName, String lastName, String description, String zipcode, String email, String password) {
-        // Creates a new parse user object
         ParseUser newUser = new ParseUser();
         ParseObject contractorListing = ParseObject.create("ContractorListing");
 
-        //Fills new user row with details
         newUser.setUsername(email);
         newUser.setPassword(password);
         newUser.setEmail(email);
-        newUser.put("firstName", firstName);
-        newUser.put("lastName", lastName);
-        newUser.put("zipcode", zipcode);
-        newUser.put("serviceSeeker", false);
+        newUser.put(ServiceProviderFirstNameKey, firstName);
+        newUser.put(ServiceProviderLastNameKey, lastName);
+        newUser.put(ServiceProviderZipcodeKey, zipcode);
+        newUser.put(IsServiceSeeker, false);
 
-        contractorListing.put("firstName", firstName);
-        contractorListing.put("lastName", lastName);
-        contractorListing.put("description", description);
+        contractorListing.put(ServiceProviderFirstNameKey, firstName);
+        contractorListing.put(ServiceProviderLastNameKey, lastName);
+        contractorListing.put(ServiceProviderDescriptionKey, description);
 
         contractorListing.saveInBackground(e -> {
             if (e == null) {
@@ -85,8 +77,6 @@ public class ServiceProvidingActivity extends AppCompatActivity {
                 Toast.makeText(ServiceProvidingActivity.this, "Sign up Successful", Toast.LENGTH_SHORT).show();
                 goMainActivity();
             } else {
-                // Sign up didn't succeed. Look at the ParseException
-                // to figure out what went wrong
                 Toast.makeText(ServiceProvidingActivity.this, "Sign Up Failed", Toast.LENGTH_SHORT).show();
             }
         });

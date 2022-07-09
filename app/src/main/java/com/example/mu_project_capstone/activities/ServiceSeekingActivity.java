@@ -7,9 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.example.mu_project_capstone.R;
-import com.parse.Parse;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
+import static com.example.mu_project_capstone.ParseObjectKeys.*;
 
 public class ServiceSeekingActivity extends AppCompatActivity {
 
@@ -44,25 +43,20 @@ public class ServiceSeekingActivity extends AppCompatActivity {
     }
 
     private void signupUser(String firstName, String lastName, String zipcode, String email, String password) {
-        // Creates a new parse user object
         ParseUser newUser = new ParseUser();
-
-        //Fills new user row with details
         newUser.setUsername(email);
         newUser.setPassword(password);
         newUser.setEmail(email);
-        newUser.put("firstName", firstName);
-        newUser.put("lastName", lastName);
-        newUser.put("zipcode", zipcode);
-        newUser.put("serviceSeeker", true);
+        newUser.put(ServiceSeekerFirstNameKey, firstName);
+        newUser.put(ServiceSeekerLastNameKey, lastName);
+        newUser.put(ServiceSeekerZipcodeKey, zipcode);
+        newUser.put(IsServiceSeeker, true);
 
         newUser.signUpInBackground(exception -> {
             if (exception == null) {
                 Toast.makeText(ServiceSeekingActivity.this, "Sign up Successful", Toast.LENGTH_SHORT).show();
                 goMainActivity();
             } else {
-                // Sign up didn't succeed. Look at the ParseException
-                // to figure out what went wrong
                 Toast.makeText(ServiceSeekingActivity.this, "Sign Up Failed", Toast.LENGTH_SHORT).show();
             }
         });

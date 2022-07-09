@@ -8,9 +8,9 @@
         android:title="Home"
         app:showAsAction="always" />
     <item
-        android:id="@+id/action_chat"
-        android:icon="@android:drawable/sym_action_chat"
-        android:title="chat"
+        android:id="@+id/action_map"
+        android:icon="@android:drawable/ic_dialog_map"
+        android:title="map"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_profile"

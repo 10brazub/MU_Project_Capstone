@@ -16,7 +16,6 @@ public class ContractorListingsAdapter extends RecyclerView.Adapter<ContractorLi
     private List<ContractorListing> contractorListings;
     private Context context;
 
-
     public ContractorListingsAdapter(List<ContractorListing> contractorListings, Context context) {
         this.contractorListings = contractorListings;
         this.context = context;
@@ -36,7 +35,6 @@ public class ContractorListingsAdapter extends RecyclerView.Adapter<ContractorLi
             tvContractorDescription = itemView.findViewById(R.id.tvContractorDescription);
 
             itemView.setOnClickListener(this::onClick);
-
         }
 
         private void onClick(View view) {
@@ -60,16 +58,13 @@ public class ContractorListingsAdapter extends RecyclerView.Adapter<ContractorLi
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_post_contractor, parent, false);
-
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         ContractorListing contractorListing = contractorListings.get(position);
         holder.bind(contractorListing);
-
     }
 
     @Override

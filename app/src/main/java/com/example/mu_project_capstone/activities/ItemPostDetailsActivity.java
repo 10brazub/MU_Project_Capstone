@@ -2,7 +2,6 @@ package com.example.mu_project_capstone.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.mu_project_capstone.ContractorListing;
 import com.example.mu_project_capstone.R;
