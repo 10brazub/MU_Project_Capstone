@@ -30,7 +30,7 @@ App will connect users with service providers like babysitting, lawn care, plumb
 * Implement Google maps SDK into app to display available service providers with markers
 * Users can review the service provider
 * User can swipe left to delete a matched contractor
-* TODO: Find an animation for app
+* Find an animation for app
 * TODO: Find external library for visual polish
 
 
