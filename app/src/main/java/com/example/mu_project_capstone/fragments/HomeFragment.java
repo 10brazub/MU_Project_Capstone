@@ -50,7 +50,8 @@ public class HomeFragment extends Fragment {
         cvSearchBar.setOnClickListener(v -> {
             Intent searchIntent = new Intent(getContext(), SearchActivity.class);
             startActivity(searchIntent);
-            getActivity().overridePendingTransition(R.anim.slide_in_up, R.anim.slide_in_up);
+            getActivity().overridePendingTransition(R.anim.slide_in_up, R.anim.no_change);
+
         });
     }
 
