@@ -45,13 +45,13 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginStart="32dp"
-      android:layout_marginTop="24dp"
+      android:layout_marginTop="16dp"
       android:layout_marginEnd="32dp"
       android:text="I have been in the plumbing business for 25 years contact me for rates"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+      app:layout_constraintTop_toBottomOf="@+id/btnSchedule" />
 
   <RatingBar
       android:id="@+id/ratingBar"
@@ -66,4 +66,15 @@
       app:layout_constraintHorizontal_bias="0.49"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/tvConFirstNameDetail" />
+
+  <Button
+      android:id="@+id/btnSchedule"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:text="Schedule Now!"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.498"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
