@@ -1,5 +1,7 @@
 package com.example.mu_project_capstone.fragments;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -14,6 +16,7 @@ import android.view.ViewGroup;
 import com.example.mu_project_capstone.ContractorListing;
 import com.example.mu_project_capstone.ContractorListingsAdapter;
 import com.example.mu_project_capstone.R;
+import com.example.mu_project_capstone.activities.MainActivity;
 import com.example.mu_project_capstone.activities.SearchActivity;
 import com.parse.ParseQuery;
 import java.util.ArrayList;
@@ -39,19 +42,21 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Context context = getContext();
+        Activity HomeFragmentActivity = getActivity();
+
         rvContractorListings = getView().findViewById(R.id.rvContractorListings);
         contractorListings = new ArrayList<>();
-        adapter = new ContractorListingsAdapter(contractorListings, getContext());
+        adapter = new ContractorListingsAdapter(contractorListings, context);
         rvContractorListings.setAdapter(adapter);
-        rvContractorListings.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvContractorListings.setLayoutManager(new LinearLayoutManager(context));
         queryContractorListings();
 
         cvSearchBar = getView().findViewById(R.id.cvSearchBar);
         cvSearchBar.setOnClickListener(v -> {
-            Intent searchIntent = new Intent(getContext(), SearchActivity.class);
+            Intent searchIntent = new Intent(context, SearchActivity.class);
             startActivity(searchIntent);
-            getActivity().overridePendingTransition(R.anim.slide_in_up, R.anim.no_change);
-
+            HomeFragmentActivity.overridePendingTransition(R.anim.slide_in_up, R.anim.no_change);
         });
     }
 

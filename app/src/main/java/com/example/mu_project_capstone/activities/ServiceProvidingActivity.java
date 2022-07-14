@@ -61,6 +61,7 @@ public class ServiceProvidingActivity extends AppCompatActivity {
         contractorListing.put(ServiceProviderFirstNameKey, firstName);
         contractorListing.put(ServiceProviderLastNameKey, lastName);
         contractorListing.put(ServiceProviderDescriptionKey, description);
+        contractorListing.put(ServiceProviderZipcodeKey, zipcode);
 
         contractorListing.saveInBackground(e -> {
             if (e == null) {

@@ -22,9 +22,14 @@ public class ItemPostDetailsActivity extends AppCompatActivity {
         tvConLastNameDetail = findViewById(R.id.tvConLastNameDetail);
         tvConDescriptionDetail = findViewById(R.id.tvConDescriptionDetail);
 
+        //handle for null
         contractorListing = getIntent().getParcelableExtra("ContractorListingDetails");
-        tvConFirstNameDetail.setText(contractorListing.getKeyContractorFirstName());
-        tvConLastNameDetail.setText(contractorListing.getKeyContractorLastName());
-        tvConDescriptionDetail.setText(contractorListing.getKeyContractorDescription());
+        if (contractorListing != null) {
+
+            tvConFirstNameDetail.setText(contractorListing.getKeyContractorFirstName());
+            tvConLastNameDetail.setText(contractorListing.getKeyContractorLastName());
+            tvConDescriptionDetail.setText(contractorListing.getKeyContractorDescription());
+
+        }
     }
 }

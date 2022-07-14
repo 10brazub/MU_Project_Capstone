@@ -4,6 +4,7 @@ public final class ParseObjectKeys {
 
     private ParseObjectKeys(){}
 
+    public static final String CurrentUserZipcodeKey = "zipcode";
     public static final String ServiceSeekerFirstNameKey = "firstName";
     public static final String ServiceSeekerLastNameKey = "lastName";
     public static final String ServiceSeekerZipcodeKey = "zipcode";
