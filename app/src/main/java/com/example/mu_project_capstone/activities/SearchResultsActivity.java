@@ -51,6 +51,12 @@ public class SearchResultsActivity extends AppCompatActivity {
         }
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0, R.anim.slide_out_right);
+    }
     
     public void getDescriptionScores(String userQuery) {
         ParseQuery<ContractorListing> contractorDescriptionQuery = ParseQuery.getQuery(ContractorListing.class);

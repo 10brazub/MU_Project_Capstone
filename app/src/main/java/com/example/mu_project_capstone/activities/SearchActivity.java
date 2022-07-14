@@ -18,6 +18,7 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+
         etUserSearchInput = findViewById(R.id.etUserSeachInput);
         etUserZipcodeInput = findViewById(R.id.etUserZipcodeInput);
         btnUserSearch = findViewById(R.id.btnUserSearch);
@@ -27,6 +28,7 @@ public class SearchActivity extends AppCompatActivity {
             Intent searchResultsIntent = new Intent(getBaseContext(), SearchResultsActivity.class);
             searchResultsIntent.putExtra("userQueryExtra", userQuery);
             startActivity(searchResultsIntent);
+            overridePendingTransition(R.anim.slide_in_left, R.anim.no_change);
 
         });
     }
