@@ -23,14 +23,14 @@ App will connect users with service providers like babysitting, lawn care, plumb
 **Required Must-have Stories**
 
 * Users can login/logout
-
 * User will choose from two different flows, either looking for a service or providing a service
-* Users will have a search feature to look for a service with filters for location, price, etc.
+* Users will have a search feature to look for a service with filters for location
 * Users can see a list of matched service providers
 * Implement Google maps SDK into app to display available service providers with markers
-* Users can review the service provider
-* User can swipe left to delete a matched contractor
-* Find an animation for app
+
+
+* Build out scheduling feature 
+* TODO: Find animation
 * TODO: Find external library for visual polish
 
 
