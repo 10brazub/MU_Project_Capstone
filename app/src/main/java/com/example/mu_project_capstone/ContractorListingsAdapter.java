@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.mu_project_capstone.activities.ItemPostDetailsActivity;
 import java.util.List;
+import static com.example.mu_project_capstone.ConstantsKeys.*;
 
 public class ContractorListingsAdapter extends RecyclerView.Adapter<ContractorListingsAdapter.ViewHolder> {
 
@@ -29,7 +30,6 @@ public class ContractorListingsAdapter extends RecyclerView.Adapter<ContractorLi
 
         public ViewHolder(View itemView) {
             super(itemView);
-
             tvContractorFirstName = itemView.findViewById(R.id.tvContractorFirstName);
             tvContractorLastName = itemView.findViewById(R.id.tvContractorLastName);
             tvContractorDescription = itemView.findViewById(R.id.tvContractorDescription);
@@ -42,7 +42,7 @@ public class ContractorListingsAdapter extends RecyclerView.Adapter<ContractorLi
             if (position != RecyclerView.NO_POSITION) {
                 ContractorListing contractorListing = contractorListings.get(position);
                 Intent contractorDetailIntent = new Intent(context, ItemPostDetailsActivity.class);
-                contractorDetailIntent.putExtra("ContractorListingDetails", contractorListing);
+                contractorDetailIntent.putExtra(CONTRACTOR_LISTING_DETAILS, contractorListing);
                 context.startActivity(contractorDetailIntent);
             }
         }

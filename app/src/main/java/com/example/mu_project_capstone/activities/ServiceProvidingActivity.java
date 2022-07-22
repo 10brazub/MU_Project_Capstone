@@ -10,10 +10,7 @@ import android.widget.Toast;
 import com.example.mu_project_capstone.ContractorAvailability;
 import com.example.mu_project_capstone.ContractorListing;
 import com.example.mu_project_capstone.R;
-import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
 import static com.example.mu_project_capstone.ParseObjectKeys.*;
 
@@ -59,11 +56,11 @@ public class ServiceProvidingActivity extends AppCompatActivity {
         newUser.setUsername(email);
         newUser.setPassword(password);
         newUser.setEmail(email);
-        newUser.put(ServiceProviderFirstNameKey, firstName);
-        newUser.put(ServiceProviderLastNameKey, lastName);
-        newUser.put(ServiceProviderZipcodeKey, zipcode);
-        newUser.put(ServiceProviderDescriptionKey, description);
-        newUser.put(IsServiceSeeker, false);
+        newUser.put(SERVICE_PROVIDER_FIRST_NAME_KEY, firstName);
+        newUser.put(SERVICE_PROVIDER_LAST_NAME_KEY, lastName);
+        newUser.put(SERVICE_PROVIDER_ZIPCODE_KEY, zipcode);
+        newUser.put(SERVICE_PROVIDER_DESCRIPTION_KEY, description);
+        newUser.put(IS_SERVICE_SEEKER, false);
 
         contractorListing.setKeyContractorFirstName(firstName);
         contractorListing.setKeyContractorLastName(lastName);

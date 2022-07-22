@@ -4,22 +4,31 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_choose_path.xml" value="0.289278489264889" />
+        <entry key="app/src/main/res/layout/activity_contractor_main.xml" value="0.24048913043478262" />
         <entry key="app/src/main/res/layout/activity_item_post_details.xml" value="0.4023782260176063" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.26531170831210393" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2677092940719039" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.16818642350557245" />
+        <entry key="app/src/main/res/layout/activity_schedule.xml" value="0.24048913043478262" />
         <entry key="app/src/main/res/layout/activity_search.xml" value="0.40625399733642165" />
         <entry key="app/src/main/res/layout/activity_search_results.xml" value="0.16818642350557245" />
         <entry key="app/src/main/res/layout/activity_service_providing.xml" value="0.35359875222911" />
         <entry key="app/src/main/res/layout/activity_service_seeking.xml" value="0.3233695652173913" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.2886662587910117" />
+        <entry key="app/src/main/res/layout/fragment_availability.xml" value="0.43607330322265625" />
+        <entry key="app/src/main/res/layout/fragment_contractor_profile.xml" value="0.2969140459400739" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.16134751773049646" />
         <entry key="app/src/main/res/layout/fragment_map.xml" value="0.23143115942028986" />
         <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.16134751773049646" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.16818642350557245" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2387995216501037" />
+        <entry key="app/src/main/res/layout/fragment_requests.xml" value="0.3333226415536118" />
         <entry key="app/src/main/res/layout/item_contractor_post.xml" value="0.47747750016572876" />
         <entry key="app/src/main/res/layout/item_post2.xml" value="0.5046656167011976" />
         <entry key="app/src/main/res/layout/item_post_contractor.xml" value="0.5705211429805546" />
+        <entry key="app/src/main/res/layout/item_service_request.xml" value="0.3614547729492188" />
+        <entry key="app/src/main/res/layout/item_time_slot.xml" value="0.4809374630789224" />
+        <entry key="app/src/main/res/layout/popup_window_no_search_results.xml" value="0.38708566425736357" />
+        <entry key="app/src/main/res/menu/contractor_menu_bottom_navigation.xml" value="0.3458333333333333" />
         <entry key="app/src/main/res/menu/menu_bottom_navigation.xml" value="0.34479166666666666" />
         <entry key="app/src/main/res/menu/menu_main.xml" value="0.337037037037037" />
       </map>

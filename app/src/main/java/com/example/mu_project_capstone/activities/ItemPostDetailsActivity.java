@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.example.mu_project_capstone.ContractorListing;
 import com.example.mu_project_capstone.R;
 import com.parse.ParseUser;
+import static com.example.mu_project_capstone.ConstantsKeys.*;
 
 public class ItemPostDetailsActivity extends AppCompatActivity {
 
@@ -29,7 +30,7 @@ public class ItemPostDetailsActivity extends AppCompatActivity {
         btnSchedule = findViewById(R.id.btnSchedule);
 
         //handle for null
-        contractorListing = getIntent().getParcelableExtra("ContractorListingDetails");
+        contractorListing = getIntent().getParcelableExtra(CONTRACTOR_LISTING_DETAILS);
         if (contractorListing != null) {
             tvConFirstNameDetail.setText(contractorListing.getKeyContractorFirstName());
             tvConLastNameDetail.setText(contractorListing.getKeyContractorLastName());
@@ -39,7 +40,7 @@ public class ItemPostDetailsActivity extends AppCompatActivity {
 
         btnSchedule.setOnClickListener(v -> {
             Intent scheduleActivityIntent = new Intent(this, ScheduleActivity.class);
-            scheduleActivityIntent.putExtra("chosenContractorDetails", chosenContractor);
+            scheduleActivityIntent.putExtra(CONTRACTOR_LISTING_USER, chosenContractor);
             startActivity(scheduleActivityIntent);
         });
     }

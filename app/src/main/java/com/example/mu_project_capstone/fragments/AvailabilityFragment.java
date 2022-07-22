@@ -29,6 +29,7 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import static com.example.mu_project_capstone.ParseObjectKeys.*;
 
 public class AvailabilityFragment extends Fragment {
 
@@ -76,22 +77,19 @@ public class AvailabilityFragment extends Fragment {
             }
         });
 
-
         etFromHour = getView().findViewById(R.id.etFromHour);
         etToHour = getView().findViewById(R.id.etToHour);
         etFromAmPm = getView().findViewById(R.id.etFromAmPm);
         etToAmPm = getView().findViewById(R.id.etToAmPm);
         btnSaveAvailability = getView().findViewById(R.id.btnSaveAvailability);
 
-        ParseUser current = ParseUser.getCurrentUser();
-        ParseQuery<ContractorAvailability> query = ParseQuery.getQuery("ContractorAvailability");
-        query.whereEqualTo("user", current);
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        ParseQuery<ContractorAvailability> query = ParseQuery.getQuery(CONTRACTOR_AVAILABILITY_CLASS);
+        query.whereEqualTo(CONTRACTOR_AVAILABILITY_USER_KEY, currentUser);
 
         btnSaveAvailability.setOnClickListener(v -> {
             String fromHour = etFromHour.getText().toString();
             String toHour = etToHour.getText().toString();
-            String fromAmPm = etFromAmPm.getText().toString();
-            String toAmPm = etToAmPm.getText().toString();
             JSONArray array = new JSONArray();
 
             if (!fromHour.isEmpty() && !toHour.isEmpty()) {
@@ -106,28 +104,26 @@ public class AvailabilityFragment extends Fragment {
                     newArray.add(fromHourValue + 1);
                     array.put(newArray);
                     fromHourValue++;
-
                 }
 
-                query.findInBackground((objects, e) -> {
-                    for(ContractorAvailability curr: objects) {
-                        curr.setSundayAvailability(array);
-                        curr.saveInBackground();
+                query.findInBackground((contractorAvailabilityList, e) -> {
+                    for(ContractorAvailability contractorAvailability: contractorAvailabilityList) {
+                        contractorAvailability.setSundayAvailability(array);
+                        contractorAvailability.saveInBackground();
                         Toast.makeText(getContext(), "SAVED", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
         });
-
     }
 
     public void setDate(){
         ParseUser currentUser = ParseUser.getCurrentUser();
-        ParseQuery<ContractorAvailability> query = ParseQuery.getQuery("ContractorAvailability");
-        query.whereEqualTo("user", currentUser);
-        query.findInBackground((objects, e) -> {
-            if(objects != null) {
-                ContractorAvailability current = objects.get(0);
+        ParseQuery<ContractorAvailability> query = ParseQuery.getQuery(CONTRACTOR_AVAILABILITY_CLASS);
+        query.whereEqualTo(CONTRACTOR_AVAILABILITY_USER_KEY, currentUser);
+        query.findInBackground((contractorAvailabilityList, e) -> {
+            if(contractorAvailabilityList != null) {
+                ContractorAvailability current = contractorAvailabilityList.get(0);
                 JSONArray array = current.getSundayAvailability();
                 if (array == null) {
                     return;
@@ -156,17 +152,18 @@ public class AvailabilityFragment extends Fragment {
 
     public void removeSundayAvailability(){
         ParseUser currentUser = ParseUser.getCurrentUser();
-        ParseQuery<ContractorAvailability> query = ParseQuery.getQuery("ContractorAvailability");
-        query.whereEqualTo("user", currentUser);
-        query.findInBackground((objects, e) -> {
-            ContractorAvailability current = objects.get(0);
-            current.remove("Sunday");
+        ParseQuery<ContractorAvailability> query = ParseQuery.getQuery(CONTRACTOR_AVAILABILITY_CLASS);
+        query.whereEqualTo(CONTRACTOR_AVAILABILITY_USER_KEY, currentUser);
+        query.findInBackground((contractorAvailabilities, e) -> {
+            ContractorAvailability current = contractorAvailabilities.get(0);
+            current.remove(CONTRACTOR_AVAILABILITY_SUNDAY_KEY);
             current.saveInBackground();
             etFromHour.setText("");
             etToHour.setText("");
             Toast.makeText(getContext(), "REMOVED", Toast.LENGTH_SHORT).show();
         });
     }
+
 
 
 

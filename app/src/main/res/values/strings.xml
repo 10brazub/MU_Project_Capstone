@@ -6,6 +6,6 @@
     <!-- Paste BOTH strings as required -->
     <string name="back4app_app_id">2QsohZlBbnipEHUNQiQAY4pvwh3ApqzfylLrFdGk</string>
     <string name="back4app_client_key">74nzJlRClSvU3EgguR9r7d5CRYDpHojsYtGIEklA</string>
-    <string name="title_activity_maps">MapsActivity</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

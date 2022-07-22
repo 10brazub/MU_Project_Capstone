@@ -54,9 +54,9 @@ public class ContractorProfileFragment extends Fragment {
         btnProfileLogout = view.findViewById(R.id.btnProfileLogout);
 
         ParseUser currentUser = ParseUser.getCurrentUser();
-        String currentUserFirstName = currentUser.get(ServiceProviderFirstNameKey).toString();
-        String currentUserLastName = currentUser.get(ServiceProviderLastNameKey).toString();
-        String currentUserDescription = currentUser.get(ServiceProviderDescriptionKey).toString();
+        String currentUserFirstName = currentUser.get(SERVICE_PROVIDER_FIRST_NAME_KEY).toString();
+        String currentUserLastName = currentUser.get(SERVICE_PROVIDER_LAST_NAME_KEY).toString();
+        String currentUserDescription = currentUser.get(SERVICE_PROVIDER_DESCRIPTION_KEY).toString();
 
         tvProfileFirstName.setText(currentUserFirstName);
         tvProfileLastName.setText(currentUserLastName);

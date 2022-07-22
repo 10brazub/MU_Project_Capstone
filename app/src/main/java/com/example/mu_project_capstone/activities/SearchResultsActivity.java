@@ -23,13 +23,14 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import static com.example.mu_project_capstone.ConstantsKeys.*;
 
 public class SearchResultsActivity extends AppCompatActivity {
 
     private RecyclerView rvSearchResults;
     private List<ContractorListing> contractorListings;
     private ContractorListingsAdapter adapter;
-    Map<ContractorListing, Double> userQueryResultsMap;
+    Map<ContractorListing, Double> sortedScoresMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,6 @@ public class SearchResultsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search_results);
         
         Context context = getBaseContext();
-
         rvSearchResults = findViewById(R.id.rvSearchResults);
         contractorListings = new ArrayList<>();
         adapter = new ContractorListingsAdapter(contractorListings, SearchResultsActivity.this);
@@ -46,10 +46,9 @@ public class SearchResultsActivity extends AppCompatActivity {
 
         Bundle userQueryExtra = getIntent().getExtras();
         if (userQueryExtra != null) {
-            userQueryResultsMap = (Map<ContractorListing, Double>) userQueryExtra.get("userQueryResults"); //Use a separate file for the extra name and move logic to search act to avoid no results
-            populateRecyclerView(userQueryResultsMap);
+            sortedScoresMap = (Map<ContractorListing, Double>) userQueryExtra.get(SORTED_SCORES_MAP);
+            populateRecyclerView(sortedScoresMap);
         }
-
     }
 
     @Override
@@ -58,9 +57,8 @@ public class SearchResultsActivity extends AppCompatActivity {
         overridePendingTransition(0, R.anim.slide_out_right);
     }
 
-
-    private void populateRecyclerView(Map<ContractorListing, Double> sortedMap) {
-        contractorListings.addAll(sortedMap.keySet());
+    private void populateRecyclerView(Map<ContractorListing, Double> sortedScoresMap) {
+        contractorListings.addAll(sortedScoresMap.keySet());
         adapter.notifyDataSetChanged();
     }
 }

@@ -23,6 +23,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.StringJoiner;
 import static com.example.mu_project_capstone.ParseObjectKeys.*;
+import static com.example.mu_project_capstone.ConstantsKeys.*;
 
 public class ScheduleActivity extends AppCompatActivity {
 
@@ -39,7 +40,7 @@ public class ScheduleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
 
-        ParseUser contractorUser = getIntent().getParcelableExtra("chosenContractorDetails");
+        ParseUser contractorUser = getIntent().getParcelableExtra(CONTRACTOR_LISTING_USER);
         calvScheduler = findViewById(R.id.calvScheduler);
         rvTimeSlots = findViewById(R.id.rvTimeSlots);
         availableContractorTimes = new ArrayList<>();
@@ -73,8 +74,8 @@ public class ScheduleActivity extends AppCompatActivity {
                 if (adapter.selectedTimes.size() > 0) {
                     JSONArray currentSundayRequests = currentContractorAvailability.getSundayRequests();
                     JSONArray selectedTimes = new JSONArray();
-                    selectedTimes.put(ParseUser.getCurrentUser().get(ServiceSeekerFirstNameKey));
-                    selectedTimes.put(ParseUser.getCurrentUser().get(ServiceSeekerZipcodeKey));
+                    selectedTimes.put(ParseUser.getCurrentUser().get(SERVICE_SEEKER_FIRST_NAME_KEY));
+                    selectedTimes.put(ParseUser.getCurrentUser().get(SERVICE_SEEKER_ZIPCODE_KEY));
                     selectedTimes.put(chosenDate);
                     for (Integer selectedTime : adapter.selectedTimes) {
                         selectedTimes.put(selectedTime);
@@ -116,8 +117,8 @@ public class ScheduleActivity extends AppCompatActivity {
     }
 
     private void querySundayAvailability(ParseUser contractorUser) {
-        ParseQuery<ContractorAvailability> query = ParseQuery.getQuery("ContractorAvailability");
-        query.whereEqualTo("user", contractorUser);
+        ParseQuery<ContractorAvailability> query = ParseQuery.getQuery(CONTRACTOR_AVAILABILITY_CLASS);
+        query.whereEqualTo(CONTRACTOR_AVAILABILITY_USER_KEY, contractorUser);
         query.findInBackground(new FindCallback<ContractorAvailability>() {
             @Override
             public void done(List<ContractorAvailability> objects, ParseException e) {

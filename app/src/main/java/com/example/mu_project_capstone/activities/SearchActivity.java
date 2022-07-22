@@ -32,6 +32,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import static com.example.mu_project_capstone.ConstantsKeys.*;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -65,64 +66,75 @@ public class SearchActivity extends AppCompatActivity {
         overridePendingTransition(0, R.anim.slide_out_up);
     }
 
+    /**
+     * Starts the search and assigns a certain score for each contractor using userQuery
+     * that will then be sent through multiple functions to calculate based on relevance.
+     * The first function is idf(inverse document frequency) to get an idf value which is
+     * first found using userQuery which calculates the number of documents(Contractor Job Descriptions)
+     * that contain the userQuery. If there are no documents that contain the userQuery all
+     * calculation stops to avoid unnecessary computation. Instead a popup text is displayed
+     * to the user letting them know that their query yielded no results. However, if there
+     * is at least one document that contains userQuery then calculation continues. Documents
+     * are then passed through the tf(term frequency) function which calculates a value based
+     * on the number of times userQuery appears relative to the size of the description. That
+     * tf value is then multiplied with the idf value and a score is the outcome. If the score
+     * is greater than 0, the contractor listing is paired with the received score in a hashmap.
+     * That hashmap is then passed into the sortMap function to rank the contractor listings based
+     * on highest score. The sorted hashmap is then returned to populate the recycler view of the
+     * next activity to display the search results.
+     * @param userQuery - User input into search bar for the type of service they need
+     */
     public void getDescriptionScores(String userQuery) {
         ParseQuery<ContractorListing> contractorDescriptionQuery = ParseQuery.getQuery(ContractorListing.class);
-        contractorDescriptionQuery.findInBackground((objects, e) -> {
+        contractorDescriptionQuery.findInBackground((contractorListingList, e) -> {
 
-            double idfValue = idf(objects, userQuery);
+            double idfValue = getIdfScore(contractorListingList, userQuery);
             if (idfValue == Double.POSITIVE_INFINITY) {
                 LayoutInflater layoutInflater = (LayoutInflater) SearchActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View customView = layoutInflater.inflate(R.layout.popup_window_no_search_results,null);
-                popupWindow = new PopupWindow(customView, ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
+                View popupWindowView = layoutInflater.inflate(R.layout.popup_window_no_search_results,null);
+                popupWindow = new PopupWindow(popupWindowView, ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
                 popupWindow.showAtLocation(searchLayout, Gravity.CENTER, 0, 0);
                 Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-                        popupWindow.dismiss();
-                    }
-                }, 3000);
-
+                handler.postDelayed(() -> popupWindow.dismiss(), 3000);
             } else {
-                Map<ContractorListing, Double> rankingMap = new HashMap<>();
-
-                for (ContractorListing listing : objects) {
-                    double tfValue = tf(listing, userQuery);
-                    double score = tfIdfScore(tfValue, idfValue);
+                Map<ContractorListing, Double> contractorScoresMap = new HashMap<>();
+                for (ContractorListing listing : contractorListingList) {
+                    double tfValue = getTfScore(listing, userQuery);
+                    double score = getTfIdfScore(tfValue, idfValue);
                     if (score > 0.0) {
-                        rankingMap.put(listing, score);
+                        contractorScoresMap.put(listing, score);
                     }
                 }
-                Map<ContractorListing, Double> sortedMap = sortMap(rankingMap);
-
+                Map<ContractorListing, Double> sortedScoresMap = sortMap(contractorScoresMap);
                 Intent searchResultsIntent = new Intent(getBaseContext(), SearchResultsActivity.class);
-                searchResultsIntent.putExtra("userQueryResults", (Serializable) sortedMap);
+                searchResultsIntent.putExtra(SORTED_SCORES_MAP, (Serializable) sortedScoresMap);
                 startActivity(searchResultsIntent);
                 overridePendingTransition(R.anim.slide_in_left, R.anim.no_change);
             }
         });
     }
 
-    private double idf(List<ContractorListing> objects, String userQuery) {
-        double numOfContractorListings = objects.size();
-        double numDocsWithQuery = 0;
+
+    private double getIdfScore(List<ContractorListing> contractorListingList, String userQuery) {
+        double numOfContractorListings = contractorListingList.size();
+        double numDocsContainingQuery = 0;
         String contractorDescription;
 
-        for (ContractorListing listing : objects) {
+        for (ContractorListing listing : contractorListingList) {
             contractorDescription = listing.getKeyContractorDescription();
             List<String> contractorDescriptionTerms = new ArrayList<>(Arrays.asList(contractorDescription.split(" ")));
-
             for (String word : contractorDescriptionTerms) {
                 if (userQuery.equalsIgnoreCase(word)) {
-                    numDocsWithQuery++;
+                    numDocsContainingQuery++;
                     break;
                 }
             }
         }
 
-        return Math.log(numOfContractorListings / numDocsWithQuery);
+        return Math.log(numOfContractorListings / numDocsContainingQuery);
     }
 
-    private double tf(ContractorListing contractorListing, String userQuery) {
+    private double getTfScore(ContractorListing contractorListing, String userQuery) {
         String contractorDescription = contractorListing.getKeyContractorDescription();
         List<String> contractorDescriptionTerms = new ArrayList<>(Arrays.asList(contractorDescription.split(" ")));
         double queryOccurrences = 0;
@@ -137,13 +149,13 @@ public class SearchActivity extends AppCompatActivity {
         return queryOccurrences / contractorDescriptionSize;
     }
 
-    private double tfIdfScore(double tfValue, double idfValue) {
+    private double getTfIdfScore(double tfValue, double idfValue) {
         return tfValue * idfValue;
     }
 
-    private Map<ContractorListing, Double> sortMap(Map<ContractorListing, Double> rankingMap) {
+    private Map<ContractorListing, Double> sortMap(Map<ContractorListing, Double> contractorScoresMap) {
 
-        Map<ContractorListing, Double> sortedMap = rankingMap
+        Map<ContractorListing, Double> sortedMap = contractorScoresMap
                 .entrySet()
                 .stream()
                 .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
@@ -152,9 +164,6 @@ public class SearchActivity extends AppCompatActivity {
 
         return sortedMap;
     }
-
-
-
 }
 
 

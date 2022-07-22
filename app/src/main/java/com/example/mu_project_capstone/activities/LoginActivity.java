@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         if (ParseUser.getCurrentUser() != null) {
-            if (ParseUser.getCurrentUser().get(IsServiceSeeker).equals(false)) {
+            if (ParseUser.getCurrentUser().get(IS_SERVICE_SEEKER).equals(false)) {
                 goContractorMainActivity();
             } else {
                 goMainActivity();
@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }
 
-            if (ParseUser.getCurrentUser().get("serviceSeeker").equals(false)) {
+            if (ParseUser.getCurrentUser().get(IS_SERVICE_SEEKER).equals(false)) {
                 goContractorMainActivity();
             } else {
                 goMainActivity();

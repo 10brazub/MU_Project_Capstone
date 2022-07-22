@@ -47,10 +47,10 @@ public class ProfileFragment extends Fragment {
         btnUserLogout = view.findViewById(R.id.btnUserLogout);
 
         currentUser = ParseUser.getCurrentUser();
-        String currentUserFirstName = currentUser.get(ServiceSeekerFirstNameKey).toString();
-        String currentUserLastName = currentUser.get(ServiceSeekerLastNameKey).toString();
+        String currentUserFirstName = currentUser.get(SERVICE_SEEKER_FIRST_NAME_KEY).toString();
+        String currentUserLastName = currentUser.get(SERVICE_SEEKER_LAST_NAME_KEY).toString();
         String currentUserEmail = currentUser.getEmail();
-        String currentUserZipcode = currentUser.get(ServiceProviderZipcodeKey).toString();
+        String currentUserZipcode = currentUser.get(SERVICE_PROVIDER_ZIPCODE_KEY).toString();
 
         tvUserFirstName.setText(currentUserFirstName);
         tvUserLastName.setText(currentUserLastName);

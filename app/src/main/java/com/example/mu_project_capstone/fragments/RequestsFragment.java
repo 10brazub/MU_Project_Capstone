@@ -27,6 +27,7 @@ import com.parse.ParseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import static com.example.mu_project_capstone.ParseObjectKeys.*;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -86,27 +87,24 @@ public class RequestsFragment extends Fragment {
     }
 
     private void queryServiceRequests() {
-        ParseQuery<ContractorAvailability> query = ParseQuery.getQuery("ContractorAvailability");
-        query.whereEqualTo("user", ParseUser.getCurrentUser());
-        query.findInBackground(new FindCallback<ContractorAvailability>() {
-            @Override
-            public void done(List<ContractorAvailability> objects, ParseException e) {
-                if (e == null) {
-                    ContractorAvailability currentCon = objects.get(0);
-                    JSONArray listRequests = currentCon.getSundayRequests();
+        ParseQuery<ContractorAvailability> query = ParseQuery.getQuery(CONTRACTOR_AVAILABILITY_CLASS);
+        query.whereEqualTo(CONTRACTOR_AVAILABILITY_USER_KEY, ParseUser.getCurrentUser());
+        query.findInBackground((contractorAvailabilityList, e) -> {
+            if (e == null) {
+                ContractorAvailability currentCon = contractorAvailabilityList.get(0);
+                JSONArray listRequests = currentCon.getSundayRequests();
 
-                    for (int i=0; i < listRequests.length(); i++) {
-                        try {
-                            serviceRequests.put(listRequests.get(i));
-                        } catch (JSONException ex) {
-                            ex.printStackTrace();
-                        }
+                for (int i=0; i < listRequests.length(); i++) {
+                    try {
+                        serviceRequests.put(listRequests.get(i));
+                    } catch (JSONException ex) {
+                        ex.printStackTrace();
                     }
-                    adapter.notifyDataSetChanged();
-                }else {
-                    Toast.makeText(getContext(), "Could Not Retrieve Requests At This Time", Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
                 }
+                adapter.notifyDataSetChanged();
+            }else {
+                Toast.makeText(getContext(), "Could Not Retrieve Requests At This Time", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
             }
         });
     }

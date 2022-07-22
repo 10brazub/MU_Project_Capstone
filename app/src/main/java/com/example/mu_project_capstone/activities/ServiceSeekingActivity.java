@@ -47,10 +47,10 @@ public class ServiceSeekingActivity extends AppCompatActivity {
         newUser.setUsername(email);
         newUser.setPassword(password);
         newUser.setEmail(email);
-        newUser.put(ServiceSeekerFirstNameKey, firstName);
-        newUser.put(ServiceSeekerLastNameKey, lastName);
-        newUser.put(ServiceSeekerZipcodeKey, zipcode);
-        newUser.put(IsServiceSeeker, true);
+        newUser.put(SERVICE_SEEKER_FIRST_NAME_KEY, firstName);
+        newUser.put(SERVICE_SEEKER_LAST_NAME_KEY, lastName);
+        newUser.put(SERVICE_SEEKER_ZIPCODE_KEY, zipcode);
+        newUser.put(IS_SERVICE_SEEKER, true);
 
         newUser.signUpInBackground(exception -> {
             if (exception == null) {
