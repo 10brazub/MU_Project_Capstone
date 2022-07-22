@@ -1,8 +1,11 @@
 package com.example.mu_project_capstone.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import com.example.mu_project_capstone.R;
@@ -22,6 +25,8 @@ public class SearchActivity extends AppCompatActivity {
         etUserSearchInput = findViewById(R.id.etUserSeachInput);
         etUserZipcodeInput = findViewById(R.id.etUserZipcodeInput);
         btnUserSearch = findViewById(R.id.btnUserSearch);
+
+        etUserSearchInput.requestFocus();
 
         btnUserSearch.setOnClickListener(v -> {
             String userQuery = etUserSearchInput.getText().toString();
