@@ -1,26 +1,14 @@
 package com.example.mu_project_capstone.activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
-
 import com.example.mu_project_capstone.R;
 import com.example.mu_project_capstone.fragments.AvailabilityFragment;
 import com.example.mu_project_capstone.fragments.ContractorProfileFragment;
-import com.example.mu_project_capstone.fragments.HomeFragment;
-import com.example.mu_project_capstone.fragments.MapFragment;
-import com.example.mu_project_capstone.fragments.ProfileFragment;
 import com.example.mu_project_capstone.fragments.RequestsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
-import com.parse.ParseUser;
 
 public class ContractorMainActivity extends AppCompatActivity {
 

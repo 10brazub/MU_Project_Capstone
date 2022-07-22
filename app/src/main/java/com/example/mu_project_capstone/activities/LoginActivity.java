@@ -5,13 +5,13 @@ import androidx.core.content.ContextCompat;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.mu_project_capstone.R;
 import com.parse.ParseUser;
+import static com.example.mu_project_capstone.ParseObjectKeys.*;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -26,12 +26,11 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         if (ParseUser.getCurrentUser() != null) {
-            if (ParseUser.getCurrentUser().get("serviceSeeker").equals(false)) {
+            if (ParseUser.getCurrentUser().get(IsServiceSeeker).equals(false)) {
                 goContractorMainActivity();
             } else {
                 goMainActivity();
             }
-
         }
 
         etLoginEmail = findViewById(R.id.etEmail);
@@ -40,9 +39,9 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogin);
 
         btnLogin.setOnClickListener(v -> {
-            String email = etLoginEmail.getText().toString();
-            String password = etLoginPassword.getText().toString();
-            loginUser(email, password);
+            String enteredEmail = etLoginEmail.getText().toString();
+            String enteredPassword = etLoginPassword.getText().toString();
+            loginUser(enteredEmail, enteredPassword);
         });
 
         tvSignup.setPaintFlags(tvSignup.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
