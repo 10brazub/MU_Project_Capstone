@@ -6,9 +6,15 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.mu_project_capstone.ContractorAvailability;
+import com.example.mu_project_capstone.ContractorListing;
 import com.example.mu_project_capstone.R;
+import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
+
 import static com.example.mu_project_capstone.ParseObjectKeys.*;
 
 public class ServiceProvidingActivity extends AppCompatActivity {
@@ -48,7 +54,7 @@ public class ServiceProvidingActivity extends AppCompatActivity {
 
     private void signupUser(String firstName, String lastName, String description, String zipcode, String email, String password) {
         ParseUser newUser = new ParseUser();
-        ParseObject contractorListing = ParseObject.create("ContractorListing");
+        ContractorListing contractorListing = new ContractorListing();
 
         newUser.setUsername(email);
         newUser.setPassword(password);
@@ -56,36 +62,42 @@ public class ServiceProvidingActivity extends AppCompatActivity {
         newUser.put(ServiceProviderFirstNameKey, firstName);
         newUser.put(ServiceProviderLastNameKey, lastName);
         newUser.put(ServiceProviderZipcodeKey, zipcode);
+        newUser.put(ServiceProviderDescriptionKey, description);
         newUser.put(IsServiceSeeker, false);
 
-        contractorListing.put(ServiceProviderFirstNameKey, firstName);
-        contractorListing.put(ServiceProviderLastNameKey, lastName);
-        contractorListing.put(ServiceProviderDescriptionKey, description);
-        contractorListing.put(ServiceProviderZipcodeKey, zipcode);
-
-        contractorListing.saveInBackground(e -> {
-            if (e == null) {
-                Toast.makeText(this, "Listing made", Toast.LENGTH_SHORT).show();
-            }
-            else {
-                Toast.makeText(this, "Listing failed", Toast.LENGTH_SHORT).show();
-            }
-
-        });
+        contractorListing.setKeyContractorFirstName(firstName);
+        contractorListing.setKeyContractorLastName(lastName);
+        contractorListing.setKeyContractorDescription(description);
+        contractorListing.setKeyContractorZipcode(zipcode);
+        contractorListing.setKeyContractorUser(newUser);
 
         newUser.signUpInBackground(exception -> {
             if (exception == null) {
-                Toast.makeText(ServiceProvidingActivity.this, "Sign up Successful", Toast.LENGTH_SHORT).show();
-                goMainActivity();
+                contractorListing.saveInBackground(e -> {
+                    if (e == null) {
+                        Toast.makeText(this, "Listing made", Toast.LENGTH_SHORT).show();
+                        initializeContractorAvailability(newUser);
+                        goContractorMainActivity();
+                    }
+                    else {
+                        Toast.makeText(this, "Listing failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
             } else {
                 Toast.makeText(ServiceProvidingActivity.this, "Sign Up Failed", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void goMainActivity() {
-        Intent mainActivityIntent = new Intent(this, MainActivity.class);
-        startActivity(mainActivityIntent);
+    private void initializeContractorAvailability(ParseUser newUser) {
+        ContractorAvailability contractorAvailability = new ContractorAvailability();
+        contractorAvailability.setKeyUser(newUser);
+        contractorAvailability.saveInBackground();
+    }
+
+    private void goContractorMainActivity() {
+        Intent contractorMainActivityIntent = new Intent(this, ContractorMainActivity.class);
+        startActivity(contractorMainActivityIntent);
         finish();
     }
 }
