@@ -2,9 +2,12 @@ package com.example.mu_project_capstone;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,12 +27,14 @@ public class ContractorListingsAdapter extends RecyclerView.Adapter<ContractorLi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        private ImageView ivContractorPicture;
         private TextView tvContractorFirstName;
         private TextView tvContractorLastName;
         private TextView tvContractorDescription;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            ivContractorPicture = itemView.findViewById(R.id.ivContractorPicture);
             tvContractorFirstName = itemView.findViewById(R.id.tvContractorFirstName);
             tvContractorLastName = itemView.findViewById(R.id.tvContractorLastName);
             tvContractorDescription = itemView.findViewById(R.id.tvContractorDescription);
@@ -48,6 +53,7 @@ public class ContractorListingsAdapter extends RecyclerView.Adapter<ContractorLi
         }
 
         public void bind(ContractorListing contractorListing) {
+            ivContractorPicture.setImageDrawable(ivContractorPicture.getResources().getDrawable(R.drawable.icons8_user_90));
             tvContractorFirstName.setText(contractorListing.getKeyContractorFirstName());
             tvContractorLastName.setText(contractorListing.getKeyContractorLastName());
             tvContractorDescription.setText(contractorListing.getKeyContractorDescription());

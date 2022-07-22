@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.mu_project_capstone.ContractorListing;
 import com.example.mu_project_capstone.R;
@@ -12,6 +13,7 @@ import static com.example.mu_project_capstone.ConstantsKeys.*;
 
 public class ItemPostDetailsActivity extends AppCompatActivity {
 
+    ImageView ivConPictureDetail;
     TextView tvConFirstNameDetail;
     TextView tvConLastNameDetail;
     TextView tvConDescriptionDetail;
@@ -24,6 +26,7 @@ public class ItemPostDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_post_details);
 
+        ivConPictureDetail = findViewById(R.id.ivConPictureDetail);
         tvConFirstNameDetail = findViewById(R.id.tvConFirstNameDetail);
         tvConLastNameDetail = findViewById(R.id.tvConLastNameDetail);
         tvConDescriptionDetail = findViewById(R.id.tvConDescriptionDetail);
@@ -32,6 +35,7 @@ public class ItemPostDetailsActivity extends AppCompatActivity {
         //handle for null
         contractorListing = getIntent().getParcelableExtra(CONTRACTOR_LISTING_DETAILS);
         if (contractorListing != null) {
+            ivConPictureDetail.setImageDrawable(getDrawable(R.drawable.icons8_user_90));
             tvConFirstNameDetail.setText(contractorListing.getKeyContractorFirstName());
             tvConLastNameDetail.setText(contractorListing.getKeyContractorLastName());
             tvConDescriptionDetail.setText(contractorListing.getKeyContractorDescription());

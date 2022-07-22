@@ -106,7 +106,6 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
-
     private double getIdfScore(List<ContractorListing> contractorListingList, String userQuery) {
         double numOfContractorListings = contractorListingList.size();
         double numDocsContainingQuery = 0;

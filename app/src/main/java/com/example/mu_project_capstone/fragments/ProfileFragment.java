@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.mu_project_capstone.R;
@@ -18,6 +19,7 @@ import static com.example.mu_project_capstone.ParseObjectKeys.*;
 
 public class ProfileFragment extends Fragment {
 
+    ImageView ivUserPhoto;
     TextView tvUserFirstName;
     TextView tvUserLastName;
     TextView tvUserEmail;
@@ -38,6 +40,7 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        ivUserPhoto = view.findViewById(R.id.ivUserPhoto);
         tvUserFirstName = view.findViewById(R.id.tvUserFirstName);
         tvUserLastName = view.findViewById(R.id.tvUserLastName);
         tvUserEmail = view.findViewById(R.id.tvUserEmail);
@@ -50,6 +53,7 @@ public class ProfileFragment extends Fragment {
         String currentUserEmail = currentUser.getEmail();
         String currentUserZipcode = currentUser.get(SERVICE_PROVIDER_ZIPCODE_KEY).toString();
 
+        ivUserPhoto.setImageDrawable(getResources().getDrawable(R.drawable.icons8_user_90));
         tvUserFirstName.setText(currentUserFirstName);
         tvUserLastName.setText(currentUserLastName);
         tvUserEmail.setText(currentUserEmail);

@@ -1,6 +1,7 @@
 package com.example.mu_project_capstone.fragments;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,6 +46,7 @@ public class ContractorProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        ivContractorPhoto = view.findViewById(R.id.ivContractorPhoto);
         tvProfileFirstName = view.findViewById(R.id.tvProfileFirstName);
         tvProfileLastName = view.findViewById(R.id.tvProfileLastName);
         tvProfileDescription = view.findViewById(R.id.tvProfileDescription);
@@ -55,6 +57,7 @@ public class ContractorProfileFragment extends Fragment {
         String currentUserLastName = currentUser.get(SERVICE_PROVIDER_LAST_NAME_KEY).toString();
         String currentUserDescription = currentUser.get(SERVICE_PROVIDER_DESCRIPTION_KEY).toString();
 
+        ivContractorPhoto.setImageDrawable(getResources().getDrawable(R.drawable.icons8_user_90));
         tvProfileFirstName.setText(currentUserFirstName);
         tvProfileLastName.setText(currentUserLastName);
         tvProfileDescription.setText(currentUserDescription);
