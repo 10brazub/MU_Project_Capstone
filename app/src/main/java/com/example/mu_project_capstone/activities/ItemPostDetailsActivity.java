@@ -1,14 +1,13 @@
 package com.example.mu_project_capstone.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.mu_project_capstone.ContractorListing;
 import com.example.mu_project_capstone.R;
+import com.parse.ParseUser;
 
 public class ItemPostDetailsActivity extends AppCompatActivity {
 
@@ -17,6 +16,7 @@ public class ItemPostDetailsActivity extends AppCompatActivity {
     TextView tvConDescriptionDetail;
     Button btnSchedule;
     ContractorListing contractorListing;
+    ParseUser chosenContractor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,18 +27,20 @@ public class ItemPostDetailsActivity extends AppCompatActivity {
         tvConLastNameDetail = findViewById(R.id.tvConLastNameDetail);
         tvConDescriptionDetail = findViewById(R.id.tvConDescriptionDetail);
         btnSchedule = findViewById(R.id.btnSchedule);
-        btnSchedule.setOnClickListener(v -> {
-            Toast.makeText(this, "CLICKED", Toast.LENGTH_SHORT).show();
-        });
 
         //handle for null
         contractorListing = getIntent().getParcelableExtra("ContractorListingDetails");
         if (contractorListing != null) {
-
             tvConFirstNameDetail.setText(contractorListing.getKeyContractorFirstName());
             tvConLastNameDetail.setText(contractorListing.getKeyContractorLastName());
             tvConDescriptionDetail.setText(contractorListing.getKeyContractorDescription());
-
+            chosenContractor = contractorListing.getKeyContractorUser();
         }
+
+        btnSchedule.setOnClickListener(v -> {
+            Intent scheduleActivityIntent = new Intent(this, ScheduleActivity.class);
+            scheduleActivityIntent.putExtra("chosenContractorDetails", chosenContractor);
+            startActivity(scheduleActivityIntent);
+        });
     }
 }
