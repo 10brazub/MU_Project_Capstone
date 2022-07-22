@@ -29,7 +29,7 @@ public class SearchResultsActivity extends AppCompatActivity {
     private RecyclerView rvSearchResults;
     private List<ContractorListing> contractorListings;
     private ContractorListingsAdapter adapter;
-    String userQuery;
+    Map<ContractorListing, Double> userQueryResultsMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +46,8 @@ public class SearchResultsActivity extends AppCompatActivity {
 
         Bundle userQueryExtra = getIntent().getExtras();
         if (userQueryExtra != null) {
-            userQuery = userQueryExtra.getString("userQueryExtra");
-            getDescriptionScores(userQuery);
+            userQueryResultsMap = (Map<ContractorListing, Double>) userQueryExtra.get("userQueryResults"); //Use a separate file for the extra name and move logic to search act to avoid no results
+            populateRecyclerView(userQueryResultsMap);
         }
 
     }
@@ -57,83 +57,10 @@ public class SearchResultsActivity extends AppCompatActivity {
         super.onBackPressed();
         overridePendingTransition(0, R.anim.slide_out_right);
     }
-    
-    public void getDescriptionScores(String userQuery) {
-        ParseQuery<ContractorListing> contractorDescriptionQuery = ParseQuery.getQuery(ContractorListing.class);
-        contractorDescriptionQuery.findInBackground((objects, e) -> {
 
-            double idfValue = idf(objects, userQuery);
-
-            Map<ContractorListing, Double> rankingMap = new HashMap<>();
-
-            for (ContractorListing listing : objects) {
-                double tfValue = tf(listing, userQuery);
-                double score = tfIdfScore(tfValue, idfValue);
-                if (score > 0.0) {
-                    rankingMap.put(listing, score);
-                }
-            }
-            Map<ContractorListing, Double> sortedMap = sortMap(rankingMap);
-            populateRecyclerView(sortedMap);
-        });
-    }
-
-    private double idf(List<ContractorListing> objects, String userQuery) {
-        double numOfContractorListings = objects.size();
-        double numDocsWithQuery = 0;
-        String contractorDescription;
-
-        for (ContractorListing listing : objects) {
-            contractorDescription = listing.getKeyContractorDescription();
-            List<String> contractorDescriptionTerms = new ArrayList<>(Arrays.asList(contractorDescription.split(" ")));
-
-            for (String word : contractorDescriptionTerms) {
-                if (userQuery.equalsIgnoreCase(word)) {
-                    numDocsWithQuery++;
-                    break;
-                }
-            }
-        }
-
-        return Math.log(numOfContractorListings / numDocsWithQuery);
-    }
-
-    private double tf(ContractorListing contractorListing, String userQuery) {
-        String contractorDescription = contractorListing.getKeyContractorDescription();
-        List<String> contractorDescriptionTerms = new ArrayList<>(Arrays.asList(contractorDescription.split(" ")));
-        double queryOccurrences = 0;
-        double contractorDescriptionSize = contractorDescriptionTerms.size();
-
-        for (String word : contractorDescriptionTerms) {
-            if (userQuery.equalsIgnoreCase(word)) {
-                queryOccurrences++;
-            }
-        }
-
-        return queryOccurrences / contractorDescriptionSize;
-    }
-
-    private double tfIdfScore(double tfValue, double idfValue) {
-        return tfValue * idfValue;
-    }
-
-    private Map<ContractorListing, Double> sortMap(Map<ContractorListing, Double> rankingMap) {
-
-        Map<ContractorListing, Double> sortedMap = rankingMap
-                .entrySet()
-                .stream()
-                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-                        (e1, e2) -> e1, LinkedHashMap::new));
-
-        return sortedMap;
-    }
 
     private void populateRecyclerView(Map<ContractorListing, Double> sortedMap) {
         contractorListings.addAll(sortedMap.keySet());
         adapter.notifyDataSetChanged();
     }
-
-
-
 }
