@@ -27,10 +27,8 @@ App will connect users with service providers like babysitting, lawn care, plumb
 * Users will have a search feature to look for a service with filters for location
 * Users can see a list of matched service providers
 * Implement Google maps SDK into app to display available service providers with markers
-
-
 * Build out scheduling feature 
-* TODO: Find animation
+* Swipe left to right to remove service request animation
 * TODO: Find external library for visual polish
 
 
