@@ -1,5 +1,6 @@
 package com.example.mu_project_capstone.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +26,7 @@ public class RequestsFragment extends Fragment {
     RecyclerView rvRequests;
     ServiceRequestsAdapter adapter;
     JSONArray serviceRequests;
+    Context context;
 
     public RequestsFragment() {
         // Required empty public constructor
@@ -46,11 +48,12 @@ public class RequestsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        context = getContext();
         rvRequests = getView().findViewById(R.id.rvRequests);
         serviceRequests = new JSONArray();
-        adapter = new ServiceRequestsAdapter(serviceRequests, getContext());
+        adapter = new ServiceRequestsAdapter(serviceRequests, context);
         rvRequests.setAdapter(adapter);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
         rvRequests.setLayoutManager(linearLayoutManager);
@@ -64,7 +67,7 @@ public class RequestsFragment extends Fragment {
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
-                Toast.makeText(getContext(), "Request Deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Request Deleted", Toast.LENGTH_SHORT).show();
                 int position = viewHolder.getAdapterPosition();
                 serviceRequests.remove(position);
                 adapter.notifyDataSetChanged();
@@ -91,7 +94,7 @@ public class RequestsFragment extends Fragment {
                 }
                 adapter.notifyDataSetChanged();
             }else {
-                Toast.makeText(getContext(), "Could Not Retrieve Requests At This Time", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Could Not Retrieve Requests At This Time", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
         });
