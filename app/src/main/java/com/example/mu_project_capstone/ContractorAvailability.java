@@ -3,11 +3,7 @@ package com.example.mu_project_capstone;
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
-
 import org.json.JSONArray;
-import org.json.JSONException;
-
-import java.util.List;
 
 @ParseClassName("ContractorAvailability")
 public class ContractorAvailability extends ParseObject {

@@ -6,12 +6,10 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.mu_project_capstone.ContractorAvailability;
 import com.example.mu_project_capstone.ContractorListing;
 import com.example.mu_project_capstone.R;
 import com.parse.ParseUser;
-
 import static com.example.mu_project_capstone.ParseObjectKeys.*;
 
 public class ServiceProvidingActivity extends AppCompatActivity {

@@ -4,30 +4,22 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.GestureDetector;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 import com.example.mu_project_capstone.ContractorAvailability;
 import com.example.mu_project_capstone.R;
-import com.google.android.libraries.places.internal.zzady;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import org.json.JSONArray;
 import org.json.JSONException;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import static com.example.mu_project_capstone.ParseObjectKeys.*;
 

@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import com.example.mu_project_capstone.ContractorListing;
 import com.example.mu_project_capstone.ContractorListingsAdapter;
 import com.example.mu_project_capstone.R;
-import com.example.mu_project_capstone.activities.MainActivity;
 import com.example.mu_project_capstone.activities.SearchActivity;
 import com.parse.ParseQuery;
 import java.util.ArrayList;

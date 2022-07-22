@@ -2,27 +2,19 @@ package com.example.mu_project_capstone.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Parcelable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.Toast;
-
 import com.example.mu_project_capstone.ContractorListing;
 import com.example.mu_project_capstone.R;
-import com.google.android.material.snackbar.Snackbar;
 import com.parse.ParseQuery;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;

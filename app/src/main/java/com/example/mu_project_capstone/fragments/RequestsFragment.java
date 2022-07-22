@@ -1,36 +1,24 @@
 package com.example.mu_project_capstone.fragments;
 
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
-import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.mu_project_capstone.ContractorAvailability;
 import com.example.mu_project_capstone.R;
 import com.example.mu_project_capstone.ServiceRequestsAdapter;
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import static com.example.mu_project_capstone.ParseObjectKeys.*;
-import org.json.JSONObject;
-
-import java.util.List;
 
 public class RequestsFragment extends Fragment {
 
