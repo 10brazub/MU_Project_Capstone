@@ -26,7 +26,12 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         if (ParseUser.getCurrentUser() != null) {
-            goMainActivity();
+            if (ParseUser.getCurrentUser().get("serviceSeeker").equals(false)) {
+                goContractorMainActivity();
+            } else {
+                goMainActivity();
+            }
+
         }
 
         etLoginEmail = findViewById(R.id.etEmail);
@@ -54,9 +59,20 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, "Wrong Username/Password", Toast.LENGTH_SHORT).show();
                 return;
             }
-            goMainActivity();
+
+            if (ParseUser.getCurrentUser().get("serviceSeeker").equals(false)) {
+                goContractorMainActivity();
+            } else {
+                goMainActivity();
+            }
             Toast.makeText(LoginActivity.this, "Logged In!", Toast.LENGTH_SHORT).show();
         });
+    }
+
+    private void goContractorMainActivity() {
+        Intent contractorMainActivityIntent = new Intent(this, ContractorMainActivity.class);
+        startActivity(contractorMainActivityIntent);
+        finish();
     }
 
     private void goMainActivity() {
