@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ProfileFragment">
+    tools:context=".fragments.ContractorProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/ivUserPhoto"
+            android:id="@+id/ivContractorPhoto"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginStart="32dp"
@@ -23,79 +23,62 @@
             tools:src="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/tvUserFirstName"
+            android:id="@+id/tvProfileFirstName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="126dp"
             android:layout_marginTop="16dp"
-            android:text="Sammy"
+            android:text="Josh"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivUserPhoto" />
+            app:layout_constraintTop_toBottomOf="@+id/ivContractorPhoto" />
 
         <TextView
-            android:id="@+id/tvUserLastName"
+            android:id="@+id/tvProfileLastName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:text="Wilkins"
+            android:layout_marginEnd="120dp"
+            android:text="Benedict"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintStart_toEndOf="@+id/tvUserFirstName"
-            app:layout_constraintTop_toTopOf="@+id/tvUserFirstName" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvProfileFirstName"
+            app:layout_constraintTop_toTopOf="@+id/tvProfileFirstName" />
 
-        <TextView
-            android:id="@+id/tvEmailTitle"
+        <RatingBar
+            android:id="@+id/ratingBar2"
+            style="@android:style/Widget.Material.RatingBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="300dp"
-            android:text="Email:"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:layout_marginStart="85dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="86dp"
+            android:numStars="4"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/tvProfileFirstName" />
 
         <TextView
-            android:id="@+id/tvUserEmail"
+            android:id="@+id/tvProfileDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:text="bran@gmail.com"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintStart_toEndOf="@+id/tvEmailTitle"
-            app:layout_constraintTop_toTopOf="@+id/tvEmailTitle" />
-
-        <TextView
-            android:id="@+id/tvZipcodeTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
-            android:text="Zipcode:"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="I am in the lawn care industry"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvEmailTitle" />
-
-        <TextView
-            android:id="@+id/tvUserZipcode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:text="66104"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintStart_toEndOf="@+id/tvZipcodeTitle"
-            app:layout_constraintTop_toTopOf="@+id/tvZipcodeTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar2" />
 
         <Button
-            android:id="@+id/btnUserLogout"
+            android:id="@+id/btnProfileLogout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="148dp"
-            android:layout_marginTop="136dp"
+            android:layout_marginTop="208dp"
             android:layout_marginEnd="149dp"
             android:text="Logout"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvZipcodeTitle" />
-
+            app:layout_constraintTop_toBottomOf="@+id/tvProfileDescription" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
