@@ -1,7 +1,6 @@
 package com.example.mu_project_capstone.fragments;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +15,7 @@ import android.widget.Toast;
 import com.example.mu_project_capstone.R;
 import com.example.mu_project_capstone.activities.LoginActivity;
 import com.parse.ParseUser;
-import static com.example.mu_project_capstone.ParseObjectKeys.*;
+import static com.example.mu_project_capstone.keys.ParseObjectKeys.*;
 
 public class ContractorProfileFragment extends Fragment {
 

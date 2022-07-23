@@ -1,4 +1,4 @@
-package com.example.mu_project_capstone;
+package com.example.mu_project_capstone.keys;
 
 public class ConstantsKeys {
 

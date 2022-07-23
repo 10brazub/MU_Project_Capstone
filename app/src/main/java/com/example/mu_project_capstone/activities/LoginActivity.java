@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.mu_project_capstone.R;
 import com.parse.ParseUser;
-import static com.example.mu_project_capstone.ParseObjectKeys.*;
+import static com.example.mu_project_capstone.keys.ParseObjectKeys.*;
 
 public class LoginActivity extends AppCompatActivity {
 

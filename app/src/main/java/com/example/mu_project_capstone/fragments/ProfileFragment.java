@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.example.mu_project_capstone.R;
 import com.example.mu_project_capstone.activities.LoginActivity;
 import com.parse.ParseUser;
-import static com.example.mu_project_capstone.ParseObjectKeys.*;
+import static com.example.mu_project_capstone.keys.ParseObjectKeys.*;
 
 public class ProfileFragment extends Fragment {
 

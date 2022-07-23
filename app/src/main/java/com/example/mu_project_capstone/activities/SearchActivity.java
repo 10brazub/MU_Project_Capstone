@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupWindow;
-import com.example.mu_project_capstone.ContractorListing;
+import com.example.mu_project_capstone.models.ContractorListing;
 import com.example.mu_project_capstone.R;
 import com.parse.ParseQuery;
 import java.io.Serializable;
@@ -24,7 +24,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import static com.example.mu_project_capstone.ConstantsKeys.*;
+import static com.example.mu_project_capstone.keys.ConstantsKeys.*;
 
 public class SearchActivity extends AppCompatActivity {
 

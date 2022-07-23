@@ -1,4 +1,4 @@
-package com.example.mu_project_capstone;
+package com.example.mu_project_capstone.models;
 
 import com.parse.ParseClassName;
 import com.parse.ParseObject;

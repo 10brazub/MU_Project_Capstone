@@ -1,6 +1,9 @@
 package com.example.mu_project_capstone;
 
 import android.app.Application;
+
+import com.example.mu_project_capstone.models.ContractorAvailability;
+import com.example.mu_project_capstone.models.ContractorListing;
 import com.parse.Parse;
 import com.parse.ParseObject;
 

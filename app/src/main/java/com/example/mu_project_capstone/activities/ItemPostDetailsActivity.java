@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.example.mu_project_capstone.ContractorListing;
+import com.example.mu_project_capstone.models.ContractorListing;
 import com.example.mu_project_capstone.R;
 import com.parse.ParseUser;
-import static com.example.mu_project_capstone.ConstantsKeys.*;
+import static com.example.mu_project_capstone.keys.ConstantsKeys.*;
 
 public class ItemPostDetailsActivity extends AppCompatActivity {
 

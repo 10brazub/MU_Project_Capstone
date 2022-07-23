@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Toast;
-import com.example.mu_project_capstone.ContractorAvailability;
-import com.example.mu_project_capstone.ContractorAvailabilityAdapter;
+import com.example.mu_project_capstone.models.ContractorAvailability;
+import com.example.mu_project_capstone.adapters.ContractorAvailabilityAdapter;
 import com.example.mu_project_capstone.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -22,8 +22,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.StringJoiner;
-import static com.example.mu_project_capstone.ParseObjectKeys.*;
-import static com.example.mu_project_capstone.ConstantsKeys.*;
+import static com.example.mu_project_capstone.keys.ParseObjectKeys.*;
+import static com.example.mu_project_capstone.keys.ConstantsKeys.*;
 
 public class ScheduleActivity extends AppCompatActivity {
 
@@ -75,6 +75,7 @@ public class ScheduleActivity extends AppCompatActivity {
                     JSONArray currentSundayRequests = currentContractorAvailability.getSundayRequests();
                     JSONArray selectedTimes = new JSONArray();
                     selectedTimes.put(ParseUser.getCurrentUser().get(SERVICE_SEEKER_FIRST_NAME_KEY));
+                    selectedTimes.put(ParseUser.getCurrentUser().get(SERVICE_SEEKER_HOURLY_BUDGET_KEY));
                     selectedTimes.put(ParseUser.getCurrentUser().get(SERVICE_SEEKER_ZIPCODE_KEY));
                     selectedTimes.put(chosenDate);
                     for (Integer selectedTime : adapter.selectedTimes) {

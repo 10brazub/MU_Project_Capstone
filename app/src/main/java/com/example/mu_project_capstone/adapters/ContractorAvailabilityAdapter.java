@@ -1,4 +1,4 @@
-package com.example.mu_project_capstone;
+package com.example.mu_project_capstone.adapters;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -10,6 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mu_project_capstone.R;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import java.util.ArrayList;

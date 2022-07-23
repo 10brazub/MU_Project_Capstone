@@ -1,4 +1,4 @@
-package com.example.mu_project_capstone;
+package com.example.mu_project_capstone.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mu_project_capstone.R;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -61,10 +64,10 @@ public class ServiceRequestsAdapter extends RecyclerView.Adapter<ServiceRequests
         public void bind(JSONArray userRequest) throws JSONException {
 
             String userRequestName = userRequest.get(0).toString();
-            String userRequestZipcode = userRequest.get(1).toString();
-            String userRequestDate = userRequest.get(2).toString();
+            String userRequestZipcode = userRequest.get(2).toString();
+            String userRequestDate = userRequest.get(3).toString();
             String userRequestTime = "";
-            for (int i=3; i < userRequest.length(); i++) {
+            for (int i=4; i < userRequest.length(); i++) {
                 int selectedTime = (int) userRequest.get(i);
                 String startHour = String.valueOf(selectedTime);
                 String endHour = String.valueOf(selectedTime + 1);

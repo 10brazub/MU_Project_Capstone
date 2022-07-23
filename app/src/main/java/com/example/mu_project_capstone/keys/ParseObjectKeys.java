@@ -1,4 +1,4 @@
-package com.example.mu_project_capstone;
+package com.example.mu_project_capstone.keys;
 
 public final class ParseObjectKeys {
 
@@ -8,6 +8,7 @@ public final class ParseObjectKeys {
     public static final String SERVICE_SEEKER_FIRST_NAME_KEY = "firstName";
     public static final String SERVICE_SEEKER_LAST_NAME_KEY = "lastName";
     public static final String SERVICE_SEEKER_ZIPCODE_KEY = "zipcode";
+    public static final String SERVICE_SEEKER_HOURLY_BUDGET_KEY = "hourlyBudget";
     public static final String SERVICE_PROVIDER_FIRST_NAME_KEY = "firstName";
     public static final String SERVICE_PROVIDER_LAST_NAME_KEY = "lastName";
     public static final String SERVICE_PROVIDER_ZIPCODE_KEY = "zipcode";

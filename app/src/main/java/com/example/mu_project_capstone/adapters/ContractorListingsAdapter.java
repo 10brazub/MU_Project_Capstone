@@ -1,9 +1,7 @@
-package com.example.mu_project_capstone;
+package com.example.mu_project_capstone.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.mu_project_capstone.models.ContractorListing;
+import com.example.mu_project_capstone.R;
 import com.example.mu_project_capstone.activities.ItemPostDetailsActivity;
 import java.util.List;
-import static com.example.mu_project_capstone.ConstantsKeys.*;
+import static com.example.mu_project_capstone.keys.ConstantsKeys.*;
 
 public class ContractorListingsAdapter extends RecyclerView.Adapter<ContractorListingsAdapter.ViewHolder> {
 

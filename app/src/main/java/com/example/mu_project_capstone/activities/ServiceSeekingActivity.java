@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.example.mu_project_capstone.R;
 import com.parse.ParseUser;
-import static com.example.mu_project_capstone.ParseObjectKeys.*;
+import static com.example.mu_project_capstone.keys.ParseObjectKeys.*;
 
 public class ServiceSeekingActivity extends AppCompatActivity {
 
@@ -17,6 +17,7 @@ public class ServiceSeekingActivity extends AppCompatActivity {
     EditText etZipcodeSignup;
     EditText etEmailSignup;
     EditText etPasswordSignup;
+    EditText etUserHourlyBudget;
     Button btnSignup;
 
     @Override
@@ -29,6 +30,7 @@ public class ServiceSeekingActivity extends AppCompatActivity {
         etZipcodeSignup = findViewById(R.id.etZipcode);
         etEmailSignup = findViewById(R.id.etEmailSignup);
         etPasswordSignup = findViewById(R.id.etPasswordSignup);
+        etUserHourlyBudget = findViewById(R.id.etUserHourlyBudget);
         btnSignup = findViewById(R.id.btnSignup);
 
         btnSignup.setOnClickListener(v -> {
@@ -37,12 +39,13 @@ public class ServiceSeekingActivity extends AppCompatActivity {
             String zipcode = etZipcodeSignup.getText().toString();
             String email = etEmailSignup.getText().toString();
             String password = etPasswordSignup.getText().toString();
+            String hourlyBudget = etUserHourlyBudget.getText().toString();
 
-            signupUser(firstName, lastName, zipcode, email, password);
+            signupUser(firstName, lastName, zipcode, email, password, hourlyBudget);
         });
     }
 
-    private void signupUser(String firstName, String lastName, String zipcode, String email, String password) {
+    private void signupUser(String firstName, String lastName, String zipcode, String email, String password, String hourlyBudget) {
         ParseUser newUser = new ParseUser();
         newUser.setUsername(email);
         newUser.setPassword(password);
@@ -51,6 +54,7 @@ public class ServiceSeekingActivity extends AppCompatActivity {
         newUser.put(SERVICE_SEEKER_LAST_NAME_KEY, lastName);
         newUser.put(SERVICE_SEEKER_ZIPCODE_KEY, zipcode);
         newUser.put(IS_SERVICE_SEEKER, true);
+        newUser.put(SERVICE_SEEKER_HOURLY_BUDGET_KEY, hourlyBudget);
 
         newUser.signUpInBackground(exception -> {
             if (exception == null) {

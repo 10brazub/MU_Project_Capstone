@@ -44,8 +44,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import okhttp3.Headers;
-import static com.example.mu_project_capstone.ParseObjectKeys.*;
-import static com.example.mu_project_capstone.ConstantsKeys.*;
+import static com.example.mu_project_capstone.keys.ParseObjectKeys.*;
+import static com.example.mu_project_capstone.keys.ConstantsKeys.*;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
 

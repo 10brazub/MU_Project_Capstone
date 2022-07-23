@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.example.mu_project_capstone.ContractorAvailability;
+import com.example.mu_project_capstone.models.ContractorAvailability;
 import com.example.mu_project_capstone.R;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -21,7 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
-import static com.example.mu_project_capstone.ParseObjectKeys.*;
+import static com.example.mu_project_capstone.keys.ParseObjectKeys.*;
 
 public class AvailabilityFragment extends Fragment {
 
