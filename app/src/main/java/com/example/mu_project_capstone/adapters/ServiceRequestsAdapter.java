@@ -13,6 +13,11 @@ import com.example.mu_project_capstone.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+
 public class ServiceRequestsAdapter extends RecyclerView.Adapter<ServiceRequestsAdapter.ViewHolder> {
 
     private Context context;
@@ -63,27 +68,27 @@ public class ServiceRequestsAdapter extends RecyclerView.Adapter<ServiceRequests
 
         public void bind(JSONArray userRequest) throws JSONException {
 
-            String userRequestName = userRequest.get(0).toString();
-            String userRequestZipcode = userRequest.get(2).toString();
-            String userRequestDate = userRequest.get(3).toString();
-            String userRequestTime = "";
+            String userRequestName = userRequest.getString(0);
+            String userRequestZipcode = userRequest.getString(2);
+            String userRequestDate = userRequest.getString(3);
+            String userRequestTimeInterval = "";
+
+            List<Integer> requestedTimes = new ArrayList<>();
             for (int i=4; i < userRequest.length(); i++) {
-                int selectedTime = (int) userRequest.get(i);
-                String startHour = String.valueOf(selectedTime);
-                String endHour = String.valueOf(selectedTime + 1);
-                if (i == userRequest.length() - 1) {
-                    String timeInterval =  startHour + " - " + endHour;
-                    userRequestTime += timeInterval;
-                } else {
-                    String timeInterval =  startHour + " - " + endHour + ", ";
-                    userRequestTime += timeInterval;
-                }
+                int requestedTime = (int) userRequest.get(i);
+                requestedTimes.add(requestedTime);
             }
+            requestedTimes.sort(Comparator.naturalOrder());
+            int lastIdx = requestedTimes.size() - 1;
+            int endHourValue = requestedTimes.get(lastIdx) + 1;
+            String userRequestEndHour = String.valueOf(endHourValue);
+            String userRequestStartHour = requestedTimes.get(0).toString();
+            userRequestTimeInterval = userRequestStartHour + "-" + userRequestEndHour;
 
             tvRequestName.setText(userRequestName);
             tvRequestZipcode.setText(userRequestZipcode);
             tvRequestDate.setText(userRequestDate);
-            tvRequestTime.setText(userRequestTime);
+            tvRequestTime.setText(userRequestTimeInterval);
         }
     }
 }
