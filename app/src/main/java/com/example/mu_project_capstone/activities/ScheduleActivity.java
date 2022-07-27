@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -20,6 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.List;
 import java.util.StringJoiner;
 import static com.example.mu_project_capstone.keys.ParseObjectKeys.*;
@@ -78,6 +80,8 @@ public class ScheduleActivity extends AppCompatActivity {
                     selectedTimes.put(ParseUser.getCurrentUser().get(SERVICE_SEEKER_HOURLY_BUDGET_KEY));
                     selectedTimes.put(ParseUser.getCurrentUser().get(SERVICE_SEEKER_ZIPCODE_KEY));
                     selectedTimes.put(chosenDate);
+
+                    adapter.selectedTimes.sort(Comparator.naturalOrder());
                     for (Integer selectedTime : adapter.selectedTimes) {
                         selectedTimes.put(selectedTime);
                     }

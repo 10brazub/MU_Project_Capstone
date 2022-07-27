@@ -4,17 +4,17 @@
 
     <item
         android:id="@+id/action_home"
-        android:icon="@android:drawable/ic_menu_compass"
+        android:icon="@drawable/icons8_home_128___"
         android:title="Home"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_map"
-        android:icon="@android:drawable/ic_dialog_map"
+        android:icon="@drawable/icons8_location_128___"
         android:title="map"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_profile"
-        android:icon="@android:drawable/ic_menu_myplaces"
+        android:icon="@drawable/icons8_user_128___"
         android:title="profile"
         app:showAsAction="always" />
 </menu>

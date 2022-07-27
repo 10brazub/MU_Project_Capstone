@@ -17,9 +17,9 @@
         <entry key="app/src/main/res/layout/activity_service_providing.xml" value="0.35359875222911" />
         <entry key="app/src/main/res/layout/activity_service_seeking.xml" value="0.28884350320567254" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.2886662587910117" />
-        <entry key="app/src/main/res/layout/fragment_availability.xml" value="0.43607330322265625" />
+        <entry key="app/src/main/res/layout/fragment_availability.xml" value="0.311279296875" />
         <entry key="app/src/main/res/layout/fragment_contractor_profile.xml" value="0.2969140459400739" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.16134751773049646" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2626597735898716" />
         <entry key="app/src/main/res/layout/fragment_map.xml" value="0.23143115942028986" />
         <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.16134751773049646" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2387995216501037" />

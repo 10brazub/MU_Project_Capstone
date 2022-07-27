@@ -7,16 +7,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.mu_project_capstone.R;
-
 import org.json.JSONArray;
 import org.json.JSONException;
-
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import static com.example.mu_project_capstone.keys.ConstantsKeys.*;
 
 public class ServiceRequestsAdapter extends RecyclerView.Adapter<ServiceRequestsAdapter.ViewHolder> {
 
@@ -68,22 +66,15 @@ public class ServiceRequestsAdapter extends RecyclerView.Adapter<ServiceRequests
 
         public void bind(JSONArray userRequest) throws JSONException {
 
-            String userRequestName = userRequest.getString(0);
-            String userRequestZipcode = userRequest.getString(2);
-            String userRequestDate = userRequest.getString(3);
-            String userRequestTimeInterval = "";
+            String userRequestName = userRequest.getString(USER_REQUEST_NAME_INDEX);
+            String userRequestZipcode = userRequest.getString(USER_REQUEST_ZIPCODE_INDEX);
+            String userRequestDate = userRequest.getString(USER_REQUEST_DATE_INDEX);
+            String userRequestStartHour = userRequest.get(USER_REQUEST_START_HOUR_INDEX).toString();
 
-            List<Integer> requestedTimes = new ArrayList<>();
-            for (int i=4; i < userRequest.length(); i++) {
-                int requestedTime = (int) userRequest.get(i);
-                requestedTimes.add(requestedTime);
-            }
-            requestedTimes.sort(Comparator.naturalOrder());
-            int lastIdx = requestedTimes.size() - 1;
-            int endHourValue = requestedTimes.get(lastIdx) + 1;
-            String userRequestEndHour = String.valueOf(endHourValue);
-            String userRequestStartHour = requestedTimes.get(0).toString();
-            userRequestTimeInterval = userRequestStartHour + "-" + userRequestEndHour;
+            int userRequestLastIdx = userRequest.length() - 1;
+            int endHourIntervalValue = (Integer) userRequest.get(userRequestLastIdx) + 1;
+            String userRequestEndHour = String.valueOf(endHourIntervalValue);
+            String userRequestTimeInterval = userRequestStartHour + "-" + userRequestEndHour;
 
             tvRequestName.setText(userRequestName);
             tvRequestZipcode.setText(userRequestZipcode);

@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +21,9 @@ import com.parse.ParseUser;
 import org.json.JSONArray;
 import org.json.JSONException;
 import static com.example.mu_project_capstone.keys.ParseObjectKeys.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeMap;
 
 public class RequestsFragment extends Fragment {
 
@@ -83,22 +86,24 @@ public class RequestsFragment extends Fragment {
         query.whereEqualTo(CONTRACTOR_AVAILABILITY_USER_KEY, ParseUser.getCurrentUser());
         query.findInBackground((contractorAvailabilityList, e) -> {
             if (e == null) {
-                ContractorAvailability currentContractor = contractorAvailabilityList.get(0);
-                JSONArray listRequests = currentContractor.getSundayRequests();
+                ContractorAvailability currentContractorAvailability = contractorAvailabilityList.get(0);
+                JSONArray arraySundayRequests = currentContractorAvailability.getSundayRequests();
 
-                for (int i=0; i < listRequests.length(); i++) {
-                    try {
-                        serviceRequests.put(listRequests.get(i));
-                    } catch (JSONException ex) {
-                        ex.printStackTrace();
-                    }
+                List<JSONArray> listSundayRequests = jsonToListSundayEntries(arraySundayRequests);
+                sortList(listSundayRequests);
+
+                try {
+                    rankSundayRequests(listSundayRequests);
+                } catch (JSONException ex) {
+                    ex.printStackTrace();
                 }
+
 
                 // I had planned to take in the list of requests and sort it based on
                 // what the service seekers are willing to pay and the amount of hours requested
                 // by the users to recommend the requests the contractor should accept based on time
                 // and pay.
-                //sortedServiceRequests(serviceRequests);
+//                sortedServiceRequests(serviceRequests);
 
                 adapter.notifyDataSetChanged();
             }else {
@@ -106,6 +111,52 @@ public class RequestsFragment extends Fragment {
                 e.printStackTrace();
             }
         });
+    }
+
+    private List<JSONArray> jsonToListSundayEntries(JSONArray arraySundayRequests) {
+        List<JSONArray> listSundayRequests = new ArrayList<>();
+
+        for (int i=0; i < arraySundayRequests.length(); i++) {
+            try {
+                JSONArray request = (JSONArray) arraySundayRequests.get(i);
+                listSundayRequests.add(request);
+            } catch (JSONException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        return listSundayRequests;
+    }
+
+    private void sortList(List<JSONArray> listSundayRequests) {
+        listSundayRequests.sort((a, b) -> {
+            try {
+                return ((Integer) a.get(a.length() - 1) - (Integer) b.get(b.length() - 1));
+            } catch (JSONException ex) {
+                ex.printStackTrace();
+            }
+            return 0;
+        });
+    }
+
+    private void rankSundayRequests(List<JSONArray> listSundayRequests) throws JSONException {
+        TreeMap<Integer, Integer> map = new TreeMap<>();
+        TreeMap<Integer, JSONArray> requests = new TreeMap<>();
+        int ans = 0;
+
+        for(JSONArray currentRequest : listSundayRequests){
+            Integer hoursRequested = currentRequest.length() - 4;
+            Integer requesterHourlyBudget = Integer.parseInt(currentRequest.get(1).toString());
+            int potentialRequestProfit = hoursRequested * requesterHourlyBudget;
+
+            Integer entryTillStartTime = map.floorKey((Integer) currentRequest.get(4));
+
+            int maxProfitTillStartTime = entryTillStartTime == null ? 0 : map.get(entryTillStartTime);
+            ans = Math.max(ans, maxProfitTillStartTime + potentialRequestProfit);
+            requests.put(ans, currentRequest);
+            map.put((Integer) currentRequest.get(currentRequest.length() - 1) + 1, ans);
+            Log.i("TAG", "rankSundayRequests: " + requests);
+        }
     }
 
 

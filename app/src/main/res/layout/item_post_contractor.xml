@@ -67,6 +67,7 @@
             android:layout_marginEnd="8dp"
             android:text="I do plumbing have been doing it for 25 years contact me for any inquiries"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="#B0000000"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

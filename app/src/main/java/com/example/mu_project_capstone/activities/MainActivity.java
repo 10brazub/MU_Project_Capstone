@@ -1,9 +1,12 @@
 package com.example.mu_project_capstone.activities;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
+
 import com.example.mu_project_capstone.R;
 import com.example.mu_project_capstone.fragments.HomeFragment;
 import com.example.mu_project_capstone.fragments.MapFragment;
