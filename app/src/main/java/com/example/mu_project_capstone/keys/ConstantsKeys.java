@@ -15,5 +15,9 @@ public class ConstantsKeys {
     public static final String JSON_RESPONSE_DISTANCES = "distances";
     public static final String LATITUDE = "lat";
     public static final String LONGITUDE = "lng";
+    public static final int USER_REQUEST_NAME_INDEX = 0;
+    public static final int USER_REQUEST_ZIPCODE_INDEX = 2;
+    public static final int USER_REQUEST_DATE_INDEX = 3;
+    public static final int USER_REQUEST_START_HOUR_INDEX = 4;
 
 }

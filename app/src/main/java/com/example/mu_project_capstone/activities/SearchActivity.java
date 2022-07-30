@@ -40,7 +40,6 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         searchLayout = findViewById(R.id.searchLayout);
-
         etUserSearchInput = findViewById(R.id.etUserSeachInput);
         etUserZipcodeInput = findViewById(R.id.etUserZipcodeInput);
         btnUserSearch = findViewById(R.id.btnUserSearch);
@@ -145,7 +144,6 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private Map<ContractorListing, Double> sortMap(Map<ContractorListing, Double> contractorScoresMap) {
-
         Map<ContractorListing, Double> sortedMap = contractorScoresMap
                 .entrySet()
                 .stream()
@@ -156,18 +154,3 @@ public class SearchActivity extends AppCompatActivity {
         return sortedMap;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

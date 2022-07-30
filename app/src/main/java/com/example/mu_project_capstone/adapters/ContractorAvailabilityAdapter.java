@@ -33,11 +33,13 @@ public class ContractorAvailabilityAdapter extends RecyclerView.Adapter<Contract
 
         private TextView tvFromHourSlot;
         private TextView tvToHourSlot;
+        private TextView tvDash;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvFromHourSlot = itemView.findViewById(R.id.tvFromHourSlot);
             tvToHourSlot = itemView.findViewById(R.id.tvToHourSlot);
+            tvDash = itemView.findViewById(R.id.tvDash);
 
             itemView.setOnClickListener(this::onClick);
         }
@@ -46,11 +48,17 @@ public class ContractorAvailabilityAdapter extends RecyclerView.Adapter<Contract
             int position = getAdapterPosition();
             if (position != RecyclerView.NO_POSITION) {
                 CardView clickedSlot = view.findViewById(R.id.cvTimeSlot);
-                if (clickedSlot.getCardBackgroundColor() == ColorStateList.valueOf(Color.parseColor("#89CFF0"))) {
+                if (clickedSlot.getCardBackgroundColor() == ColorStateList.valueOf(Color.parseColor("#2196F3"))) {
                     clickedSlot.setCardBackgroundColor(Color.parseColor("#FFFFFF"));
+                    tvFromHourSlot.setTextColor(Color.BLACK);
+                    tvDash.setTextColor(Color.BLACK);
+                    tvToHourSlot.setTextColor(Color.BLACK);
                     selectedTimes.removeIf(n -> (n == Integer.parseInt(tvFromHourSlot.getText().toString())));
                 } else {
-                    clickedSlot.setCardBackgroundColor(Color.parseColor("#89CFF0"));
+                    clickedSlot.setCardBackgroundColor(Color.parseColor("#2196F3"));
+                    tvFromHourSlot.setTextColor(Color.WHITE);
+                    tvDash.setTextColor(Color.WHITE);
+                    tvToHourSlot.setTextColor(Color.WHITE);
                     selectedTimes.add(Integer.parseInt(tvFromHourSlot.getText().toString()));
                 }
             }

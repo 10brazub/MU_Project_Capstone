@@ -14,6 +14,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import android.os.Looper;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -197,9 +198,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                         Object zipcode = iterator.next();
                         contractorDistance = Double.parseDouble(distances.get(zipcode.toString()).toString());
                         distanceMap.put(zipcode.toString(), contractorDistance);
-                        if (contractorDistance < 40) {
-                            distanceMap.put(zipcode.toString(), contractorDistance);
-                        }
+//                        if (contractorDistance < 40) {
+//                            Log.i("TAG", "onSuccess: " + contractorDistance);
+//                            distanceMap.put(zipcode.toString(), contractorDistance);
+//                        }
                     }
                     setContractorMarker(distanceMap, googleMap);
                 } catch (JSONException e) {
@@ -228,11 +230,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 @Override
                 public void onSuccess(int statusCode, Headers headers, JSON json) {
 
-                    JSONObject jsonObject = json.jsonObject;
+                    JSONObject zipcodeJsonData = json.jsonObject;
 
                     try {
-                        double latitude = Double.parseDouble(jsonObject.get(LATITUDE).toString());
-                        double longitude = Double.parseDouble(jsonObject.get(LONGITUDE).toString());
+                        double latitude = Double.parseDouble(zipcodeJsonData.get(LATITUDE).toString());
+                        double longitude = Double.parseDouble(zipcodeJsonData.get(LONGITUDE).toString());
 
                         LatLng newPosition = new LatLng(latitude, longitude);
                         googleMap.addMarker(new MarkerOptions().position(newPosition));
